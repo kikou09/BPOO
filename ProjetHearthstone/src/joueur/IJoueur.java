@@ -6,8 +6,6 @@ import carte.Carte;
 
 public abstract interface IJoueur{
 
-	public static int MAX_MANA=1;
-	public static int TAILLE_DECK=15;
 	
 	public abstract void finirTour() ;//throws jeu.ExceptionHearthstone;
 	//public abstract ICarte getCarteEnJeu();

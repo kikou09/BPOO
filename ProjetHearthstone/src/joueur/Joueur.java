@@ -9,6 +9,9 @@ import heros.Heros;
 
 public final class Joueur implements IJoueur {
 	
+	public static int MAX_MANA=10;
+	public static int TAILLE_DECK=15;
+	
 	private String pseudo;
 	private int mana;
 	private int stockMana;
@@ -86,7 +89,7 @@ public final class Joueur implements IJoueur {
 			System.out.println("erreur");  
 			//throw new ExceptionHearthsone ("Tu as deja le tour ");
 		this.joue=true;
-		if (this.mana <10)
+		if (this.mana < Joueur.MAX_MANA)
 			mana++;
 		this.stockMana=this.mana;
 		/*if(this.heros.getPouvoir() != null)
@@ -136,7 +139,7 @@ public final class Joueur implements IJoueur {
 	
 	
 	public final void piocher() { //throws jeu.ExceptionHearthstone{
-		if(this.deck.size()!=0)
+		if(this.deck.size()!=0 && this.deck.size() < Joueur.TAILLE_DECK)
 		{
 			int i=1;
 			i = (int)(Math.random() * i);

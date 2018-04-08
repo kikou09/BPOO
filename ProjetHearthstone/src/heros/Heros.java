@@ -1,6 +1,7 @@
 package heros;
 
 import java.util.ArrayList;
+import carte.Carte;
 
 public final class Heros implements Cloneable{
 
@@ -9,7 +10,7 @@ public final class Heros implements Cloneable{
 	private int vie_max;
 	private int jouer; 
 	private static ArrayList<Heros> listeHeros ;
-	//private ArrayList<ICarte> cartes ;
+	private ArrayList<Carte> cartes ;
 	//private Capacite pouvoir ; 
 /*	
 	public static Heros choixHeros(String nom)
@@ -68,6 +69,7 @@ public final class Heros implements Cloneable{
 		this.nom=n;
 		this.pt_vie=15;
 		this.vie_max=15;
+		this.cartes=new ArrayList <Carte>();
 		//this.pouvoir=null;
 	}
 	
@@ -105,6 +107,15 @@ public final class Heros implements Cloneable{
 	
 	public String toString(){
 		return " Heros [ nom = " + this.nom + " , point de vie = " + this.pt_vie + " ]" ;
+	}
+	
+
+	public ArrayList<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(ArrayList<Carte> cartes) {
+		this.cartes = cartes;
 	}
 
 	@Override
