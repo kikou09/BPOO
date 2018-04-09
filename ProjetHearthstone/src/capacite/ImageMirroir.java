@@ -2,30 +2,21 @@ package capacite;
 
 import carte.Serviteur;
 
-public class Invocation extends ACapacite {
+public final class ImageMirroir extends ACapacite{
 	
-	private Serviteur serviteur_invoque ;
-	
-	public Invocation ( String nom , String des , Serviteur s )
-	{
-		super(nom , des ) ;
+	public ImageMirroir(){
 		
-		if(s==null)
-		{
-			//throw new ExceptionHearthsone("Le serviteur ne doit pas être null");
-			System.out.println("erreur");
-		}
-		this.serviteur_invoque=s;
-	}
-	
-	public Serviteur getServiteur_invoque(){
-		return this.serviteur_invoque;
+		super("Image mirroir ", "Invoque 2 serviteur 0/2 ayant provocation ");
+		
 	}
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
 		
+		//joueur_courant=Plateau.getJoueurCourant()
+		
+		//Serviteur s_invoque1= new Serviteur("Serviteur de Jaina", 0 , joueur_courant , 0 , 2 , new Provocation())
+		//Serviteur s_invoque2= (Serviteur) s_invoque1.clone();
 	}
 
 	@Override

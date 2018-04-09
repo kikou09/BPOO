@@ -1,25 +1,10 @@
 package capacite;
 
-import carte.Serviteur;
-
-public class Invocation extends ACapacite {
+public class Provocation extends ACapacite {
 	
-	private Serviteur serviteur_invoque ;
+	public Provocation(){
 	
-	public Invocation ( String nom , String des , Serviteur s )
-	{
-		super(nom , des ) ;
-		
-		if(s==null)
-		{
-			//throw new ExceptionHearthsone("Le serviteur ne doit pas Ãªtre null");
-			System.out.println("erreur");
-		}
-		this.serviteur_invoque=s;
-	}
-	
-	public Serviteur getServiteur_invoque(){
-		return this.serviteur_invoque;
+		super("Provocation", "Oblige l'adversaire à viser le serviteur qui detient cette capacite");
 	}
 
 	@Override

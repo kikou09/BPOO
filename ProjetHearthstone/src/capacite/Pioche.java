@@ -2,7 +2,7 @@ package capacite;
 
 import Plateau.Plateau;
 
-public final class Pioche extends Capacite {
+public final class Pioche extends ACapacite {
 	
 	private int nb_pioche ;
 	

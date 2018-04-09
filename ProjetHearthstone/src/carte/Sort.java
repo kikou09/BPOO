@@ -1,8 +1,13 @@
 package carte;
 
 import joueur.Joueur;
+import heros.Heros;
+import capacite.ACapacite;
 
 public final class Sort extends Carte {
+	
+	private ACapacite capacite;
+
 
 	@Override
 	public boolean disparait() {
@@ -32,23 +37,20 @@ public final class Sort extends Carte {
 	public void executerEffetDisparition(Object cible) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	//private Capacite capacite;
-	
-	public Sort ( String n , int cout , Joueur joueur /*,Capacite c*/ )
+	}	
+	public Sort ( String n , int cout , Joueur joueur ,ACapacite c )
 	{
 		super(n,cout,joueur);
-		//this.capacite=c;
+		this.capacite=c;
 	}
 	
-	/*
-	public Capacite getCapacite(){
+	
+	public ACapacite getCapacite(){
 		return this.capacite;
-	}*/
+	}
 	
 	public String toString(){
-		return "Sort [ " + super.toString() /*+ " capacite = " + this.capacite + */ + "]" ;
+		return "Sort [ " + super.toString() + " capacite = " + this.capacite +  "]" ;
 	}
 
 	@Override

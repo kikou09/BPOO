@@ -1,5 +1,6 @@
 package carte;
 
+import capacite.ACapacite;
 import joueur.Joueur;
 
 public final class Serviteur extends Carte {
@@ -8,9 +9,9 @@ public final class Serviteur extends Carte {
 	private int point_vie;
 	private int attente;
 	//private int deja_attaque ???;
-	//private Capacite capacite;
+	private ACapacite capacite;
 	
-	public Serviteur( String n , int cout , Joueur j , int attaque , int vie /*, Capacite c*/)
+	public Serviteur( String n , int cout , Joueur j , int attaque , int vie , ACapacite c)
 	{
 		super(n,cout,j);
 		if(vie==0)
@@ -21,7 +22,7 @@ public final class Serviteur extends Carte {
 			//throw new ExceptionHearthsone("Les points d'attaque ne doivent pas être egales à 0");
 		this.point_attaque=attaque;
 		this.point_vie=vie;
-		//this.capacite=c;
+		this.capacite=c;
 	}
 	
 	public Serviteur ( Serviteur s)

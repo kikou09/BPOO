@@ -1,30 +1,25 @@
 package capacite;
 
 import carte.Serviteur;
-
-public class Invocation extends ACapacite {
+public final class Charge extends ACapacite{
 	
-	private Serviteur serviteur_invoque ;
-	
-	public Invocation ( String nom , String des , Serviteur s )
-	{
-		super(nom , des ) ;
+	public Charge() {
 		
-		if(s==null)
-		{
-			//throw new ExceptionHearthsone("Le serviteur ne doit pas Ãªtre null");
-			System.out.println("erreur");
-		}
-		this.serviteur_invoque=s;
-	}
-	
-	public Serviteur getServiteur_invoque(){
-		return this.serviteur_invoque;
+		super("Charge", " Permet à un serviteur de ne pas attendre avant d'attaquer");
 	}
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
+		
+		if(cible==null)
+			//erreur necessite cible
+			//throw new ExceptionHearthsone("Charge necessite une cible");
+			
+		if(!(cible instanceof Serviteur))
+			//throw new ExceptionHearthsone("La cible doit être un serviteur);
+			
+		cible=((Serviteur)cible);
+		((Serviteur)cible).setAttente(0);
 		
 	}
 
