@@ -1,43 +1,41 @@
 package joueur;
 import joueur.Joueur;
 import carte.Carte;
+import carte.ICarte;
 
 import java.util.ArrayList;
 
 import Plateau.Plateau;
+import application.HearthstoneException;
 import heros.Heros;
 
 public final class Joueur implements IJoueur {
 	
-	public static int MAX_MANA=10;
-	public static int TAILLE_DECK=15;
-	
+
 	private String pseudo;
 	private int mana;
 	private int stockMana;
 	private Heros heros;
-	private ArrayList<Carte> deck;
-	private ArrayList<Carte> main ;
-	private ArrayList<Carte> cartes_poses;
+	private ArrayList<ICarte> deck;
+	private ArrayList<ICarte> main ;
+	private ArrayList<ICarte> cartes_poses;
 	private boolean joue;
 	
 	
 	public Joueur ( String p , Heros h ){
 		if (h==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le heros ne doit pas être null ");*/
+			throw new IllegalArgumentException("Le heros ne doit pas �tre null ");
 		if (p==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le pseudo ne doit pas être null");
-		if(p=="")
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le pseudo ne doit pas être vide");
+			throw new IllegalArgumentException("Le pseudo ne doit pas �tre null");
+		if(p.equals(""))
+			throw new IllegalArgumentException("Le pseudo ne doit pas �tre vide");
 		this.pseudo=p;
 		this.heros=h;
 		this.mana=0;
-		this.main=new ArrayList<Carte>();
-		this.cartes_poses=new ArrayList<Carte>();
-		this.deck=new ArrayList<Carte>();
+		this.stockMana=0;
+		this.main=new ArrayList<ICarte>();
+		this.cartes_poses=new ArrayList<ICarte>();
+		this.deck=new ArrayList<ICarte>();
 		
 	}
 	
@@ -49,7 +47,7 @@ public final class Joueur implements IJoueur {
 		return this.heros ;
 	}
 		
-	public final ArrayList<Carte> getMain(){
+	public final ArrayList<ICarte> getMain(){
 		return this.main;
 	}
 	
@@ -61,61 +59,60 @@ public final class Joueur implements IJoueur {
 		return this.stockMana;
 	}
 	
-	public ArrayList<Carte> getDeck() {
+	public ArrayList<ICarte> getDeck() {
 		return deck;
 	}
 	
 
-	public void setDeck(ArrayList<Carte> d) {
+	public void setDeck(ArrayList<ICarte> d) throws HearthstoneException {
 		
-		if(d!=null)
-		{
-			//test si la partie est en cours
-			this.deck=d;
-		}
+		if(Plateau.instancePlateau().estDemarree())
+			throw new HearthstoneException("La partie est en cours ");
+		if(d==null)
+			throw new HearthstoneException("Le deck a ajouter ne doit pas �tre null");
+		this.deck=d;
+
 	}
 
-	public ArrayList<Carte> getCartes_poses() {
+	public final ArrayList<ICarte> getCartes_Poses() {
 		return cartes_poses;
 	}
+	
 
 	public final String toString()
 	{
-		return "Joueur [pseudo=" + this.pseudo + " , Heros = " + this.heros +  ", mana=" + this.mana + ", Stock de mana =" + this.stockMana + "]"; 
+		return this.pseudo + " [ Heros = " + this.heros +  " \n\t    Stock de mana =" + this.stockMana + "\n";
 	}
 	
-	public final void prendreTour() {//throws jeu.ExceptionHearthstone {
+	public final void prendreTour() throws HearthstoneException {
 		if(this.joue)
-			System.out.println("erreur");  
-			//throw new ExceptionHearthsone ("Tu as deja le tour ");
+			throw new HearthstoneException ("Tu as deja le tour ");
 		this.joue=true;
-		if (this.mana < Joueur.MAX_MANA)
+		if (this.mana < IJoueur.MAX_MANA)
 			mana++;
 		this.stockMana=this.mana;
-		/*if(this.heros.getPouvoir() != null)
-			//il peut executer son pouvoir*/
+		piocher();
+		this.utiliserPouvoir(null);
+		
+		for (ICarte carte : cartes_poses) {
+			
+			carte.executerEffetDebutTour();	
+		}
 		
 	}
 		
-	public final void finirTour () {//throws jeu.ExceptionHearthstone{
+	public final void finirTour () throws HearthstoneException {
 		if(!this.joue)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Ce n'est pas ton tour ");
-		for(Carte c : this.cartes_poses)
+			throw new HearthstoneException ("Ce n'est pas ton tour ");
+		for(ICarte c : this.cartes_poses)
 		{
 			c.executerEffetFinTour();
 		}
 		
 		this.joue=false;
-		//Plateau.finTour(this);
+		Plateau.instancePlateau().finTour(this);
 	}
 
-
-	@Override
-	public void utiliserPouvoir(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -138,67 +135,71 @@ public final class Joueur implements IJoueur {
 	
 	
 	
-	public final void piocher() { //throws jeu.ExceptionHearthstone{
-		if(this.deck.size()!=0 && this.deck.size() < Joueur.TAILLE_DECK)
+	public final void piocher()  throws HearthstoneException {
+		if(this.deck.size()!=0 )
 		{
-			int i=1;
-			i = (int)(Math.random() * i);
+			int i = (int)(Math.random() * this.deck.size());
 			System.out.println(i);
-			Carte carte_p = this.deck.get(i);
+			ICarte carte_p = this.deck.get(i);
 			this.main.add(carte_p);
 			this.deck.remove(i);
 		}
 	}
 	
-	/*
-	public final void jouerCarte(ICarte carte)throws jeu.ExceptionHearthstone{
+	
+	public final void jouerCarte(ICarte carte) throws HearthstoneException {
 		if (!this.main.contains(carte))
-			throw new ExceptionHearthsone("Tu n'as pas cette carte dans ta main ! ");
+			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
 		if(mana<carte.getMana())
-			throw new ExceptionHearthsone("Tu n'as pas assez de mana");
-		this.mana=this.mana - carte.getMana()
+			throw new HearthstoneException("Tu n'as pas assez de mana");
+		this.mana=this.mana - carte.getMana();
 		this.main.remove(carte);
-		this.cartes_posés.add(carte);
-		//Test action sans cible
+		this.cartes_poses.add(carte);
+		try {
+			
+			carte.executerEffetDebutMiseEnJeu(null);
+		}
+		catch(HearthstoneException e) {
+			
+			throw new HearthstoneException ("Erreur de cible");
+		}
 	}
 	
-	public final void jouerCarte(ICarte carte, java.lang.Object cible)throws jeu.ExceptionHearthstone{
+	public final void jouerCarte(ICarte carte, Object cible) throws HearthstoneException{
 		if (!this.main.contains(carte))
-			throw new ExceptionHearthsone("Tu n'as pas cette carte dans ta main ! ");
+			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
 		if(mana<carte.getMana())
-			throw new ExceptionHearthsone("Tu n'as pas assez de mana");
-		this.mana=this.mana - carte.getMana()
+			throw new HearthstoneException("Tu n'as pas assez de mana");
+		this.mana=this.mana - carte.getMana();
 		this.main.remove(carte);
-		this.cartes_posés.add(carte);
-		//Test action avec cible
-	}*/
+		this.cartes_poses.add(carte);
+		try {
+			
+			carte.executerEffetDebutMiseEnJeu(cible);
+		}
+		catch(HearthstoneException e) {
+			
+			throw new HearthstoneException ("Erreur de cible");
+		}
+	}
 
-	public final void perdreCarte(Carte carte) { //throws jeu.ExceptionHearthstone{
+	public final void perdreCarte(ICarte carte) throws HearthstoneException{
 		if (!this.cartes_poses.contains(carte))
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Carte non posés sur le plateau");
+			throw new HearthstoneException("Carte non posees sur le plateau");
 		this.cartes_poses.remove(carte);
 	}
 	
-	public final void utiliserCarte(Carte carte, Object cible) { //throws jeu.ExceptionHearthstone{
-		if (!this.cartes_poses.contains(carte))
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Carte non posés sur le plateau");
-		//carte.ExecuterAction();
-		if (carte.disparait() && this.cartes_poses.contains(carte))
-			this. cartes_poses.remove(carte);
+	
+	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
+		if(this.heros.getPouvoir() ==null)
+			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
+		this.heros.getPouvoir().executerEffetDebutTour();
 	}
-		
-	//public final void utiliserPouvoir(Object cible) { //throws jeu.ExceptionHearthstone{
-		//if(this.heros.getPouvoir() ==null)
-			//System.out.println("erreur");
-			//throw new ExceptionHearthsone("Ton héros ne possède pas de pouvoir ");
-		//this.heros.utiliserPouvoir(cible);
 	
 	
-	public final Carte getCarteEnJeu(String nomCarte)
+	public final ICarte getCarteEnJeu(String nomCarte)
 	{
-		for(Carte c: this.cartes_poses) {
+		for(ICarte c: this.cartes_poses) {
 			
 			if(c.getNom().contains(nomCarte))
 			{
@@ -210,9 +211,9 @@ public final class Joueur implements IJoueur {
 		return null;
 		
 	}
-	public final Carte getCarteEnMain(String nomCarte)
+	public final ICarte getCarteEnMain(String nomCarte)
 	{
-		for(Carte c : this.main) {
+		for(ICarte c : this.main) {
 			
 			if(c.getNom().contains(nomCarte))
 				return c;
@@ -221,5 +222,17 @@ public final class Joueur implements IJoueur {
 		return null;
 		
 	}
+
+	@Override
+	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
+		
+		if (!this.cartes_poses.contains(carte))
+			throw new HearthstoneException("Carte non posees sur le plateau");
+		carte.executerAction(cible);
+		if (carte.disparait())
+			this. cartes_poses.remove(carte);
+		
+	}
+
 	
 }

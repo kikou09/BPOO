@@ -1,6 +1,8 @@
 package capacite;
 
 import joueur.Joueur;
+import Plateau.Plateau;
+import application.HearthstoneException;
 import carte.Carte;
 import carte.Serviteur;
 
@@ -11,19 +13,19 @@ public class AttaqueCiblee extends Capacite {
 		super(n,des,d);
 	}
 	
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
 			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Il faut une cible ");
+			throw new IllegalArgumentException("Il faut une cible ");
 		}	
-		if(this.utilise==1) {
+		if(this.utilise) {
 			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Deja utilise ");
+			throw new HearthstoneException("Capacite deja utilise ");
 		}
 		
 		if(!(cible instanceof Joueur) || !(cible instanceof Serviteur)) {
-			//throw new ExceptionHearthsone(" Vous devez attaquer le joueur ou un serviteur ");
+			throw new IllegalArgumentException(" Vous devez attaquer le joueur ou un serviteur ");
 		}
 		
 		if(cible instanceof Joueur) {
@@ -32,7 +34,7 @@ public class AttaqueCiblee extends Capacite {
 			((Joueur)cible).getHeros().perteVie(this.degats);
 		
 			if(((Joueur)cible).getHeros().estMort()) {
-				//Plateau.gagnePartie(Plateau.getJoueurCourant());
+				Plateau.instancePlateau().gagnePartie(Plateau.instancePlateau().getJoueurCourant());
 			}
 		
 			return;
@@ -47,7 +49,7 @@ public class AttaqueCiblee extends Capacite {
 			}
 			return;
 		}
-		this.utilise=1;
+		this.utilise=true;
 	}
 
 }

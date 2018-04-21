@@ -1,22 +1,26 @@
 package capacite;
 
 import Plateau.Plateau;
+import application.HearthstoneException;
+import joueur.IJoueur;
 
 public final class Pioche extends ACapacite {
 	
 	private int nb_pioche ;
 	
 	public Pioche(int nb){
-		super("Pioche" , " La carte qui possède cette capacite permet de piocher une ou plusieurs cartes ");
+		super("Pioche" , " La carte qui possede cette capacite permet de piocher une ou plusieurs cartes ");
 		this.nb_pioche=nb;
 	}
 	
-	public final void executerAction(Object cible)
+	public final void executerAction(Object cible) throws HearthstoneException
 	{
-		//cible=Plateau.getJoueurCourant();
+		if(cible==null)
+			throw new HearthstoneException("Il faut une cible");
+		cible=(IJoueur)Plateau.instancePlateau().getJoueurCourant();
 		for(int i=0;i<this.nb_pioche;i++)
 		{
-			//cible.piocher();
+			((IJoueur) cible).piocher();
 		}
 	}
 

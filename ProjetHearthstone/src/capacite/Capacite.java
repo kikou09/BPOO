@@ -1,6 +1,8 @@
 package capacite;
 
-public class Capacite extends ACapacite{
+import application.HearthstoneException;
+
+public abstract class Capacite extends ACapacite{
 	
 	int degats ;
 	
@@ -15,38 +17,26 @@ public class Capacite extends ACapacite{
 	}
 	
 	public void dejaUtilise() {
-		this.utilise=1;
+		this.utilise=true;
 	}
 
 	@Override
-	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerAction(Object cible) throws HearthstoneException {}
 
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		this.utilise=false;
 		
 	}
 
 	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) {}
 
 	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetMiseEnJeu(Object cible) {}
 	
 	
 	

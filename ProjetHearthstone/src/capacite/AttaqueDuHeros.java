@@ -1,7 +1,10 @@
 package capacite;
 
+import Plateau.Plateau;
+import application.HearthstoneException;
 import carte.Serviteur;
 import heros.Heros;
+import joueur.IJoueur;
 import joueur.Joueur;
 public class AttaqueDuHeros extends Capacite {
 	
@@ -10,26 +13,26 @@ public class AttaqueDuHeros extends Capacite {
 		super(n,des,d);
 	}
 	
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
 			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Il faut une cible ");
+			throw new IllegalArgumentException("Il faut une cible ");
 		}	
-		if(this.utilise==1) {
+		if(this.utilise) {
 			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Deja utilise ");
+			throw new HearthstoneException ("Capacite deja utilise ");
 		}
 		
 		if(!(cible instanceof Joueur)) {
-			//throw new ExceptionHearthsone(" Vous devez attaquer le joueur adverse ");
+			throw new IllegalArgumentException(" Vous devez attaquer le joueur adverse ");
 		}
 		
-		//Joueur j_courant= Plateau.getJoueurCourant();
-		//Joueur adverse=Plateau.getAdversaire(j_courant);
-		//adverse.getHeros().perteVie(this.degats);
-		//if(adverse.getHeros().estMort()){
-			//Plateau.gagnePartie(j_courant);
+		IJoueur j_courant= Plateau.instancePlateau().getJoueurCourant();
+		IJoueur adverse=Plateau.instancePlateau().getAdversaire(j_courant);
+		adverse.getHeros().perteVie(this.degats);
+		if(adverse.getHeros().estMort())
+			Plateau.instancePlateau().gagnePartie(j_courant);
 		/* ou  
 		cible=((Joueur)cible);
 		((Joueur)cible).getHeros().perteVie(this.degats);

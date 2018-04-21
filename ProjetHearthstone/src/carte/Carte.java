@@ -1,25 +1,23 @@
 package carte ;
+import joueur.IJoueur;
 import joueur.Joueur;
 
 public abstract class Carte implements ICarte{
 
 	private String nom;
 	private int cout_mana;
-	private Joueur proprietaire;
+	private IJoueur proprietaire;
 	
-	public Carte(String n, int c , Joueur j)
+	public Carte(String n, int c , IJoueur j)
 	{
 		if(n==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le nom ne doit pas etre null");
+			throw new IllegalArgumentException("Le nom ne doit pas etre null");
 		if(n=="")
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le nom ne doit pas etre vide");
+			throw new IllegalArgumentException("Le nom ne doit pas etre vide");
 		this.nom=n;
 		
 		if(c<0)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le cout en mana doit etre positif ");	
+			throw new IllegalArgumentException("Le cout en mana doit etre positif ");	
 		this.cout_mana=c;
 		this.proprietaire=j;
 	}
@@ -32,13 +30,13 @@ public abstract class Carte implements ICarte{
 		return this.cout_mana;
 	}
 	
-	public final Joueur getProprietaire(){
+	public final IJoueur getProprietaire(){
 		return this.proprietaire;
 	}
 	
 	
-	public void setProprietaire(Joueur j){
-		this.proprietaire=j;
+	public void setProprietaire(IJoueur proprietaire){
+		this.proprietaire=proprietaire;
 	}
 	
 	public int getCout() {
@@ -54,7 +52,7 @@ public abstract class Carte implements ICarte{
 	}
 
 	public String toString(){
-		return "Carte [ Nom = " + this.nom + " Cout = " + this.cout_mana + "]" ;
+		return "Carte [ " + this.nom + " cout = " + this.cout_mana + " "  ;
 	}
 
 	@Override

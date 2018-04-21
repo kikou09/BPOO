@@ -1,5 +1,6 @@
 package capacite;
 
+import application.HearthstoneException;
 import carte.Serviteur;
 
 public class Chasseur extends Capacite {
@@ -11,26 +12,23 @@ public class Chasseur extends Capacite {
 	}
 	
 	
-public void executerAction(Object cible) {
+public void executerAction(Object cible) throws HearthstoneException {
 		
 		if (cible==null) {
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Marque du chasseur necessite une cible");
+			throw new IllegalArgumentException("Marque du chasseur necessite une cible");
 		}
 		
-		if (this.utilise==1) {
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Deja utilise");
+		if (this.utilise) {
+			throw new HearthstoneException ("Capacite deja utilise");
 		}
 				
 		if(!(cible instanceof Serviteur))
 		{
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Cible doit être un serviteur");
+			throw new IllegalArgumentException("Cible doit être un serviteur");
 		}
 		
 		((Serviteur) cible).subitAttaque(((Serviteur) cible).getVie() - 1);
-		this.utilise=1;
+		this.utilise=true;
 		
 	
 	}

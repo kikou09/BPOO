@@ -1,6 +1,10 @@
 package carte;
 
+import application.HearthstoneException;
 import capacite.ACapacite;
+import carte.ICarte;
+import capacite.ICapacite;
+import joueur.IJoueur;
 import joueur.Joueur;
 
 public final class Serviteur extends Carte {
@@ -8,18 +12,16 @@ public final class Serviteur extends Carte {
 	private int point_attaque;
 	private int point_vie;
 	private int attente;
-	//private int deja_attaque ???;
-	private ACapacite capacite;
+	private boolean deja_attaque ;
+	private ICapacite capacite;
 	
-	public Serviteur( String n , int cout , Joueur j , int attaque , int vie , ACapacite c)
+	public Serviteur( String n , int cout , IJoueur j , int attaque , int vie , ICapacite c)
 	{
 		super(n,cout,j);
-		if(vie==0)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Les points de vies ne doivent pas Ãªtre Ã©gales Ã  0");
+		if(vie<=0)
+			throw new IllegalArgumentException("Les points de vies doivent etre positif");
 		if(attaque==0)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Les points d'attaque ne doivent pas Ãªtre egales Ã  0");
+			throw new IllegalArgumentException("Les points d'attaque ne doivent pas être egaaux à  0");
 		this.point_attaque=attaque;
 		this.point_vie=vie;
 		this.capacite=c;
@@ -45,10 +47,20 @@ public final class Serviteur extends Carte {
 		return attente;
 	}
 
-	public final void executerAction(Object o){
+	public final void executerAction(Object o) throws HearthstoneException {
 		if (this.attente !=0)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Impossible de la jouer a  ce tour ci");
+			throw new HearthstoneException ("Impossible de la jouer a  ce tour ci");
+		if(this.deja_attaque==false)
+			throw new HearthstoneException(" Deja joué ");
+			
+		//if(this.peutAttaquer(o))
+			//throw new HearthstoneException("Peut pas attaquer car un serviteur du plateau
+			//a provocation");
+			
+		this.deja_attaque=true;
+		
+		//o est un joueur
+		//o est un serviteur
 	}
 	
 	public final boolean disparait()
@@ -68,6 +80,11 @@ public final class Serviteur extends Carte {
 			this.point_vie = this.point_vie - degat ;
 		else
 			this.point_vie=0;
+	}
+	
+	public final void gagneAttaque(int a)
+	{
+		this.point_attaque+=a;
 	}
 	
 	public final void gagneVie( int nb)
@@ -91,12 +108,6 @@ public final class Serviteur extends Carte {
 	}
 
 	@Override
-	public void executerEffetDebutTour(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void executerEffetDisparition(Object cible) {
 		// TODO Auto-generated method stub
 		
@@ -108,4 +119,16 @@ public final class Serviteur extends Carte {
 		
 	}
 
+	@Override
+	public void executerEffetDebutTour() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
+	//Verifie si la cible peut être attaquer
+	public boolean peutAttaquer(Object cible) {
+		
+		
+	}*/
 }

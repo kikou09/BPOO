@@ -1,6 +1,9 @@
 package capacite;
 
+import Plateau.Plateau;
+import application.HearthstoneException;
 import carte.Serviteur;
+import joueur.IJoueur;
 
 public class Invocation extends ACapacite {
 	
@@ -12,8 +15,7 @@ public class Invocation extends ACapacite {
 		
 		if(s==null)
 		{
-			//throw new ExceptionHearthsone("Le serviteur ne doit pas Ãªtre null");
-			System.out.println("erreur");
+			throw new IllegalArgumentException("Le serviteur ne doit pas être null");
 		}
 		this.serviteur_invoque=s;
 	}
@@ -23,32 +25,25 @@ public class Invocation extends ACapacite {
 	}
 
 	@Override
-	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerAction(Object cible) throws HearthstoneException {}
 
 	@Override
-	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDebutTour() {}
 
 	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) {}
 
 	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+		
+		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
+		Serviteur s=(Serviteur)this.serviteur_invoque.clone();
+		s.setProprietaire(proprietaire);
+		proprietaire.getCartes_Poses().add(s);
+		s.executerEffetDebutMiseEnJeu(null);
 		
 	}
 

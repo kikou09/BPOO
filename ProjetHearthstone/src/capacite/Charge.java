@@ -12,11 +12,10 @@ public final class Charge extends ACapacite{
 	public void executerAction(Object cible) {
 		
 		if(cible==null)
-			//erreur necessite cible
-			//throw new ExceptionHearthsone("Charge necessite une cible");
+			throw new IllegalArgumentException("Charge necessite une cible");
 			
 		if(!(cible instanceof Serviteur))
-			//throw new ExceptionHearthsone("La cible doit être un serviteur);
+			throw new IllegalArgumentException("La cible doit être un serviteur");
 			
 		cible=((Serviteur)cible);
 		((Serviteur)cible).setAttente(0);

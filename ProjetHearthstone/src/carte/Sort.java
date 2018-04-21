@@ -1,12 +1,15 @@
 package carte;
 
+import joueur.IJoueur;
 import joueur.Joueur;
 import heros.Heros;
+import application.HearthstoneException;
 import capacite.ACapacite;
+import capacite.ICapacite;
 
 public final class Sort extends Carte {
 	
-	private ACapacite capacite;
+	private ICapacite capacite;
 
 
 	@Override
@@ -17,46 +20,43 @@ public final class Sort extends Carte {
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
+		try {
+			this.capacite.executerAction(cible);
+			super.getProprietaire().perdreCarte(this);
+		}
+		catch(HearthstoneException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDebutMiseEnJeu(Object cible) {}
 
 	@Override
-	public void executerEffetDebutTour(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}	
-	public Sort ( String n , int cout , Joueur joueur ,ACapacite c )
+	public void executerEffetDisparition(Object cible) {}	
+	
+	public Sort ( String n , int cout , IJoueur joueur , ICapacite c )
 	{
 		super(n,cout,joueur);
+		if(c==null)
+			throw new IllegalArgumentException("la capacité ne doit pas être null");
 		this.capacite=c;
 	}
 	
 	
-	public ACapacite getCapacite(){
+	public ICapacite getCapacite(){
 		return this.capacite;
 	}
 	
 	public String toString(){
-		return "Sort [ " + super.toString() + " capacite = " + this.capacite +  "]" ;
+		return "Sort [ " + super.toString() + this.capacite +  "]" ;
 	}
 
 	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
+
+	@Override
+	public void executerEffetDebutTour() {}
 
 }

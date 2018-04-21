@@ -3,19 +3,17 @@ package capacite;
 public abstract class ACapacite implements ICapacite {
 	private String nom;
 	private String description;
-	protected int utilise ;
+	protected boolean utilise ;
 	
 	
 	public ACapacite(String n, String d){
 		if(n==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le nom de la capacité ne doit pas être null ");
+			throw new IllegalArgumentException("Le nom de la capacite ne doit pas etre null ");
 		if(d==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Il faut une description ");
+			throw new IllegalArgumentException("Il faut une description ");
 		this.nom=n;
 		this.description=d;
-		this.utilise=0;
+		this.utilise=false;
 	}
 	
 	
@@ -28,18 +26,18 @@ public abstract class ACapacite implements ICapacite {
 		return description;
 	}
 
-	public int getUtilise() {
+	public boolean getUtilise() {
 		return utilise;
 	}
 
-	public void setUtilise(int utilise) {
+	public void setUtilise(boolean utilise) {
 		this.utilise = utilise;
 	}
 
 
 	public String toString()
 	{
-		return "Capacite [nom=" + this.nom + ", description=" + this.description + "]";
+		return "Capacite [ " + this.nom + " , " + this.description + "]";
 	}
 	
 }

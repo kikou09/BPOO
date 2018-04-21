@@ -1,6 +1,8 @@
 package capacite;
 
+import Plateau.Plateau;
 import carte.Serviteur;
+import joueur.IJoueur;
 
 public final class ImageMirroir extends ACapacite{
 	
@@ -13,34 +15,24 @@ public final class ImageMirroir extends ACapacite{
 	@Override
 	public void executerAction(Object cible) {
 		
-		//joueur_courant=Plateau.getJoueurCourant()
+		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		
-		//Serviteur s_invoque1= new Serviteur("Serviteur de Jaina", 0 , joueur_courant , 0 , 2 , new Provocation())
-		//Serviteur s_invoque2= (Serviteur) s_invoque1.clone();
+		Serviteur s_invoque1= new Serviteur("Serviteur de Jaina", 0 , joueur_courant , 0 , 2 , new Provocation());
+		Serviteur s_invoque2= (Serviteur) s_invoque1.clone();
 	}
 
 	@Override
-	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDebutTour() {}
 
 	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) {}
 
 	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetMiseEnJeu(Object cible) {}
+
+
 
 }

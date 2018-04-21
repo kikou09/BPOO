@@ -2,62 +2,127 @@ package Plateau;
 
 import java.util.ArrayList;
 import Plateau.IPlateau;
+import application.HearthstoneException;
+import joueur.IJoueur;
 import joueur.Joueur;
+import carte.ICarte;
 
 public final class Plateau implements IPlateau {
-
-	//private Joueur adversaire ;
-	private Joueur joueurCourant;
-	private boolean demarree;
-	private ArrayList<Joueur> joueurPresents;   //JoueursPresents dans le jeu 
 	
-	public Plateau()   //Constructeur
-	{
-		//this.adversaire=null;
-		this.joueurCourant=null;
-		this.demarree=false;
-		this.joueurPresents=new ArrayList<Joueur>();
+	private static Plateau plateau=null;
+	private IJoueur adversaire ;
+	private IJoueur joueurCourant;
+	private boolean demarree;
+	private ArrayList<IJoueur> joueurPresents;   //JoueursPresents dans le jeu 
+	
+	
+	public static Plateau instancePlateau() {
+		if(plateau==null)
+			plateau=new Plateau();
+		return plateau;
+		
 	}
 	
-	public final Joueur getJoueurCourant(){
+	private Plateau()   //Constructeur
+	{
+		this.adversaire=null;
+		this.joueurCourant=null;
+		this.demarree=false;
+		this.joueurPresents=new ArrayList<IJoueur>();
+	}
+	
+	public final IJoueur getJoueurCourant(){
 		if(!demarree)
 			return null;
 
 		return this.joueurCourant;
 	}
 	
-	public final void setJoueurCourant(Joueur joueur) //throws jeu.ExceptionHearthstone
+	public final void setJoueurCourant(IJoueur joueur)
 	{
 		if (joueur == null)
-		{
-			System.out.println("erreur joueur courant null");
-		}
-			//throw new ExceptionHearthsone("Le joueur ne doit pas être null");
+			throw new IllegalArgumentException("Le joueur ne doit pas �tre null");
 		if(this.joueurCourant==null || !(joueurCourant.equals(joueur)))
 		{
 			this.joueurCourant=joueur;
 		}
 	}
 	
-	public final Joueur getAdversaire(Joueur joueur) //throws jeu.ExceptionHearthstone
-	{
+	public final IJoueur getAdversaire(IJoueur joueur) throws HearthstoneException {
+	
 		if(! demarree)
-			System.out.println("erreur partie pas demarrer");	
-			//throw new ExceptionHearthsone("La partie n'a pas encore commencé");
+			throw new HearthstoneException("La partie n'a pas encore commence");
 		if(joueur==null)
-			System.out.println("erreur joueur null ");
-			//throw new ExceptionHearthsone("On ne peut pas recuperer l'adversaire d'un joueur null ");
+			throw new IllegalArgumentException("On ne peut pas recuperer l'adversaire d'un joueur null ");
 		if(!(joueurPresents.contains(joueur)))
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Ce joueur n'est même pas dans la partie");
+			throw new HearthstoneException("Ce joueur n'est m�me pas dans la partie");
 		if(this.joueurPresents.get(0) != joueur)
 			return this.joueurPresents.get(0);
-		else	
+		else 
 			return this.joueurPresents.get(1);
+		
 	}
 	
-	public String toString() {		
-		return "Plateau [ demarree = " + this.demarree +  "]";
+	private String dessinerCartesPoses(IJoueur joueur) {
+		
+		String chaine ="\n\n\t\t Cartes pos�es sur le plateau : \n\n";
+		
+		/*if(joueur.cartes_poses.size()!=0) {
+			for(ICarte c: this.cartes_poses) {
+			
+			chaine= chaine + "\t" + c + "\n";
+			
+			}
+		}*/
+		
+		return chaine;
+	}
+	
+	private String dessinerMain() {
+		
+		
+		String chaine = "\n			 Ta main			\n";
+   
+		if (this.joueurCourant.getMain().size() == 0)
+		{
+			chaine+= "\tBen, ta main est vide....\n";
+		}
+		else
+		{
+			IJoueur joueur_courant=this.joueurCourant;
+			for(ICarte c : joueur_courant.getMain())
+			{
+    	
+				chaine+=  "\n\t\t" + c + "\n";
+			}
+		}
+    return chaine ;
+}
+	
+	public String toString() {
+		
+		String ch="";
+		
+		ch+="\t\t\t\t\t AU TOUR DE " + this.joueurCourant.getPseudo() +"\n\n\n" ;
+		ch+=this.joueurPresents.get(0);
+		
+		if(this.joueurCourant.equals(this.joueurPresents.get(0)))
+			ch+=dessinerMain();
+		
+		ch+=dessinerCartesPoses(this.joueurPresents.get(0));
+		
+		ch+=("\t\t __________________________________________\n");
+		for(int i=0;i<4;i++) 										
+			ch+=("\t\t|                                          |\n");
+		
+		ch+=("\t\t|__________________________________________|\n\n");
+		
+		ch+=this.joueurPresents.get(1);
+		
+		if(this.joueurCourant.equals(this.joueurPresents.get(1)))
+			ch+=dessinerMain();
+		ch+=dessinerCartesPoses(this.joueurPresents.get(1));
+		return ch;
 	}
 	
 	
@@ -65,46 +130,39 @@ public final class Plateau implements IPlateau {
 		return this.demarree;
 	}
 
-	public final void ajouterJoueur(Joueur joueur) { //throws jeu.ExceptionHearthstone{
+	public final void ajouterJoueur(IJoueur joueur) throws HearthstoneException{
 		if (this.demarree)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("La partie a deja commencé");
+			throw new HearthstoneException("La partie a deja commence");
 		if(this.joueurPresents.contains(joueur))
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Ce joueur est deja présent dans la partie");
+			throw new HearthstoneException("Ce joueur est deja present dans la partie");
 		if(this.joueurPresents.size()==2)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Vous ne pouvez plus ajouter de joueur dans la partie");
+			throw new HearthstoneException("Vous ne pouvez plus ajouter de joueur dans la partie");
 		else
 			this.joueurPresents.add(joueur);
 	}
 	
-	public final void demarrerPartie() /*throws jeu.ExceptionHearthstone*/{
+	public final void demarrerPartie() throws HearthstoneException{
 		if (this.demarree)
-			System.out.println("Erreur");
-			//throw new ExceptionHearthsone("La partie a deja commence");
+			throw new HearthstoneException("La partie a deja commence");
 		if(this.joueurPresents.size() !=2)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Il faut 2 joueurs pour pouvoir jouer");
+			throw new HearthstoneException("Il faut 2 joueurs pour pouvoir jouer");
 		
 		this.demarree=true;
 		
 	}
 
 	
-	public final void finTour(Joueur Joueur) { //throws jeu.ExceptionHearthstone{
+	public final void finTour(IJoueur Joueur) throws HearthstoneException{
 		if(!this.demarree)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("La partie n'a pas encore commencé");
+			throw new HearthstoneException("La partie n'a pas encore commence");
 		else if (this.joueurCourant!=Joueur)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("C'est n'est pas ton tour");
+			throw new HearthstoneException("C'est n'est pas ton tour");
 		this.getAdversaire(Joueur).prendreTour();
 	
 	}
 	
 	
-	public final void gagnePartie (Joueur joueur) { //throws jeu.ExceptionHearthstone{
+	public final void gagnePartie (IJoueur joueur) {
 		this.demarree=false;
 		String msg="**** "+ joueur.getPseudo() + " a gagne ! ****";
 		

@@ -2,6 +2,10 @@ package capacite;
 
 import java.util.ArrayList;
 
+import Plateau.Plateau;
+import joueur.IJoueur;
+import application.HearthstoneException;
+import carte.ICarte;
 import carte.Serviteur;
 
 public class AttaqueTotale extends Capacite {
@@ -11,32 +15,29 @@ public class AttaqueTotale extends Capacite {
 		super(n,des,d);
 	}
 
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Il faut une cible ");
+			throw new IllegalArgumentException("Il faut une cible ");
 		}	
-		if(this.utilise==1) {
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Deja utilise ");
+		if(this.utilise) {
+			throw new HearthstoneException ("Capacite deja utilise ");
 		}
 		
-		//cible=Plateau.getAdversaire(Plateau.gejoueurCourant());
+		cible=(IJoueur)cible;
+		cible=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
 		
-		//ArrayList<Carte> cartes_adverses=cible.getCartesPoses();
 		
-		/*for(Carte c : cartes_adverses){
+		for(ICarte c :((IJoueur) cible).getCartes_Poses()){
 		 	if(c instanceof Serviteur){
 		 	
 		 		Serviteur s=((Serviteur)c);
-		 		s.subitDegats(this.degats);
-		 		if(s.estMort()))
-		 			((Joueur)cible).perdreCarte(s);
+		 		s.subitAttaque(this.degats);
+		 		if(s.disparait())
+		 			((IJoueur)cible).perdreCarte(s);
 		 		}
 		 	}
-		 */
 		
-		this.utilise=1;
+		this.utilise=true;
 	}
 }

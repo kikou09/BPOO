@@ -1,7 +1,10 @@
 package heros;
 
 import java.util.ArrayList;
+
+import capacite.ICapacite;
 import carte.Carte;
+import carte.ICarte;
 
 public final class Heros implements Cloneable{
 
@@ -10,85 +13,53 @@ public final class Heros implements Cloneable{
 	private int vie_max;
 	private int jouer; 
 	private static ArrayList<Heros> listeHeros ;
-	private ArrayList<Carte> cartes ;
-	//private Capacite pouvoir ; 
-/*	
-	public static Heros choixHeros(String nom)
-	{
-		
-		if(listeHeros==null)
-			listeHeros=new ArrayList<Heros>();
-		if(listeHeros.size()==0)
-		{
-			Heros Rexxar= new Heros("Rexxar");
-			Heros Jaina= new Heros ("Jaina");
-			
-			listeHeros.add(Rexxar);
-			listeHeros.add(Jaina);
-			System.out.println(listeHeros);
-			
-		}
-		
-		boolean trouve=false;
-	    for( Heros o : listeHeros)
-	    {
-	    	if( o.getNom().equals(nom))
-		   	{
-		   		trouve=true;
-		   		Object h = o.clone();
-		   		Heros heros_demande=(Heros)h;
-	    	}
-	    }
-	    if (!trouve)
-	    	System.out.println("Erreur");
-			//throw new ExceptionHearthsone("Ce heros n'existe pas ");
-	    return heros_demande;
-	}	*/
-	
-	/*public Heros(String n , Capacite p) {
+	private ArrayList<ICarte> cartes ;
+	private ICapacite pouvoir ; 
+
+	public Heros(String n , ICapacite p) {
 		if (n==null)
-			throw new ExceptionHearthsone("Le nom ne doit pas Ãªtre null");
+			throw new IllegalArgumentException("Le nom ne doit pas être null");
 		if(p==null)
-			throw new ExceptionHearthsone("La capacitÃ© de doit pas Ãªtre null");*/
-		/*if(n=="")
-			throw new ExceptionHearthsone("Le nom ne doit pas Ãªtre vide");
+			throw new IllegalArgumentException("La capacité de doit pas être null");
+		if(n.equals(""))
+			throw new IllegalArgumentException("Le nom ne doit pas être vide");
 		this.nom=n;
 		this.pt_vie=15;
 		this.vie_max=15;
 		this.pouvoir=p;
-	}*/
+		this.cartes=new ArrayList <ICarte>();
+	}
 	
 	public Heros (String n )
 	{
 		if(n==null)
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le nom ne doit pas Ãªtre null");
+			throw new IllegalArgumentException("Le nom ne doit pas être null");
 		if(n.equals(""))
-			System.out.println("erreur");
-			//throw new ExceptionHearthsone("Le nom ne doit pas Ãªtre vide");
+			throw new IllegalArgumentException("Le nom ne doit pas être vide");
 		this.nom=n;
 		this.pt_vie=15;
 		this.vie_max=15;
-		this.cartes=new ArrayList <Carte>();
-		//this.pouvoir=null;
+		this.cartes=new ArrayList <ICarte>();
+		this.pouvoir=null;
 	}
 	
 	public Heros( Heros h){
 		this.nom=h.nom;
 		this.pt_vie=h.pt_vie;
 		this.vie_max=h.vie_max;
-		//this.pouvoir=h.pouvoir;
+		this.pouvoir=h.pouvoir;
+		this.cartes=h.cartes;
 	}
 	
 	public String getNom (){
 		return this.nom;
 	}
 	
-	/*public ICapacite getPouvoir () {
+	public ICapacite getPouvoir () {
 		return this.pouvoir;
-	}*/
+	}
 	
-	public int GetPointsDeVie () {
+	public int getPointsDeVie () {
 		return this.pt_vie;
 	}
 	
@@ -106,15 +77,19 @@ public final class Heros implements Cloneable{
 	}
 	
 	public String toString(){
-		return " Heros [ nom = " + this.nom + " , point de vie = " + this.pt_vie + " ]" ;
+		String chaine= this.nom + " , point de vie = " + this.pt_vie + "]" ;
+		
+		if(this.pouvoir!=null)
+			chaine+= "\n\t    pouvoir = " + this.pouvoir;
+		return chaine;
 	}
 	
 
-	public ArrayList<Carte> getCartes() {
+	public ArrayList<ICarte> getCartes() {
 		return cartes;
 	}
 
-	public void setCartes(ArrayList<Carte> cartes) {
+	public void setCartes(ArrayList<ICarte> cartes) {
 		this.cartes = cartes;
 	}
 
