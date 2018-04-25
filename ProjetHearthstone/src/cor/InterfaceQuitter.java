@@ -1,6 +1,5 @@
 package cor;
 
-import dessin.Dessin;
 
 public class InterfaceQuitter extends Interface {
 
@@ -17,7 +16,7 @@ public class InterfaceQuitter extends Interface {
 	}
 
 	@Override
-	public void executerInteraction(Dessin d) {
+	public void executerInteraction(Object o) {
 		System.out.println("Au revoir");
 		System.exit(0);
 	}

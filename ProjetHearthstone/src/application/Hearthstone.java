@@ -11,6 +11,7 @@ import carte.Sort;
 import cor.Console;
 import cor.Interface;
 import cor.InterfaceFinirTour;
+import cor.InterfaceGetCible;
 import cor.InterfaceJouerCarteJeu;
 import cor.InterfaceJouerCarteMain;
 import cor.InterfaceQuitter;
@@ -34,7 +35,7 @@ import capacite.Pioche;
 import capacite.Provocation;
 public class Hearthstone {
 	
-	private static	Interface ihm=null;
+	public static	Interface ihm=null;
 	public final static Console es=new Console();
 		
 	public static ArrayList<ICarte> CreerCartesJaina(IJoueur j)
@@ -151,8 +152,7 @@ public class Hearthstone {
 		catch(HearthstoneException e) {
 			e.printStackTrace();
 		}	
-		//joueur1.piocher();		
-		//System.out.println(plateau);
+
 		try {
 				Plateau.instancePlateau().ajouterJoueur(joueur1);
 				Plateau.instancePlateau().ajouterJoueur(joueur2);
@@ -169,22 +169,23 @@ public class Hearthstone {
 			
 			e.printStackTrace();
 		}
-		Plateau.instancePlateau().setJoueurCourant(joueur1);
+		
+		Object obj;
+		obj=Plateau.instancePlateau();
+		((IPlateau) obj).setJoueurCourant(joueur1);
 
-		while(Plateau.instancePlateau().estDemarree()) {
+		while(((IPlateau)obj).estDemarree()) {
 			
 			es.println(Plateau.instancePlateau());
 			String choix =menu();
-			/*try {
+			try {
 				
-				ihm.interagir(choix);
+				ihm.interagir(choix,obj);
 			}
 			catch(Exception e) {
 				
 				System.err.println(e.getMessage());
-			}*/
-			
-			
+			}
 		}
 	}
 
@@ -219,6 +220,7 @@ public static String menu(){
 		monInterface=new InterfaceFinirTour(monInterface);
 		monInterface=new InterfaceJouerCarteMain(monInterface);
 		monInterface=new InterfaceJouerCarteJeu(monInterface);
+		//monInterface=new InterfaceGetCible(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);
 		
 		

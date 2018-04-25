@@ -92,7 +92,9 @@ public final class Joueur implements IJoueur {
 			mana++;
 		this.stockMana=this.mana;
 		piocher();
-		this.utiliserPouvoir(null);
+		Plateau.instancePlateau().setJoueurCourant(this);
+		if(this.heros.getPouvoir() != null)
+			this.heros.getPouvoir().executerEffetDebutTour();
 		
 		for (ICarte carte : cartes_poses) {
 			
@@ -139,7 +141,6 @@ public final class Joueur implements IJoueur {
 		if(this.deck.size()!=0 )
 		{
 			int i = (int)(Math.random() * this.deck.size());
-			System.out.println(i);
 			ICarte carte_p = this.deck.get(i);
 			this.main.add(carte_p);
 			this.deck.remove(i);
@@ -161,6 +162,9 @@ public final class Joueur implements IJoueur {
 		}
 		catch(HearthstoneException e) {
 			
+			this.mana=this.mana + carte.getMana();
+			this.main.add(carte);
+			this.cartes_poses.remove(carte);
 			throw new HearthstoneException ("Erreur de cible");
 		}
 	}

@@ -1,6 +1,6 @@
 package cor;
 
-import dessin.Dessin;
+import application.HearthstoneException;
 
 public abstract class Interface {
 	
@@ -16,15 +16,15 @@ public abstract class Interface {
 	}
 	
 	public abstract boolean saitInteragir(String choix);
-	public abstract void executerInteraction(Dessin d);
+	public abstract void executerInteraction(Object o) throws HearthstoneException;
 	public abstract String getDescription();
 	
-	public void interagir(String choix , Dessin d) throws Exception{
+	public void interagir(String choix , Object o) throws Exception{
 		
 		if(saitInteragir(choix))
-			executerInteraction(d);
+			executerInteraction(o);
 		else if(suivant != null)
-			suivant.interagir(choix, d);
+			suivant.interagir(choix , o);
 		else 
 			throw new Exception("pas d'intercation pour"+choix);
 	}

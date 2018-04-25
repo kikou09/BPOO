@@ -2,7 +2,6 @@ package cor;
 
 import Plateau.Plateau;
 import application.HearthstoneException;
-import dessin.Dessin;
 import forme.Cercle;
 
 public class InterfaceFinirTour extends Interface {
@@ -17,7 +16,7 @@ public class InterfaceFinirTour extends Interface {
 	}
 
 	@Override
-	public void executerInteraction(Dessin d) {
+	public void executerInteraction(Object o) {
 		
 		Console es=new Console();
 		try {
