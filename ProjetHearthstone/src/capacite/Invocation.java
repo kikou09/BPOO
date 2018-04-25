@@ -25,7 +25,7 @@ public class Invocation extends ACapacite {
 	}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {}
+	public void executerEffetMiseEnJeu(Object cible) {}
 
 	@Override
 	public void executerEffetDebutTour() {}
@@ -37,13 +37,16 @@ public class Invocation extends ACapacite {
 	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException { 
 		
 		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
-		Serviteur s=(Serviteur)this.serviteur_invoque.clone();
+		System.out.println(proprietaire);
+		Serviteur s=(Serviteur)(this.serviteur_invoque.clone());
 		s.setProprietaire(proprietaire);
 		proprietaire.getCartes_Poses().add(s);
+		System.out.println(Plateau.instancePlateau());
 		s.executerEffetDebutMiseEnJeu(null);
+		
 		
 	}
 

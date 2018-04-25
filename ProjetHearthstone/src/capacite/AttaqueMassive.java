@@ -21,7 +21,7 @@ public class AttaqueMassive extends Capacite {
 		
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		cible=(IJoueur)cible;
-		cible=Plateau.instancePlateau().getAdversaire(joueur_courant);
+		//cible=Plateau.instancePlateau().getAdversaire(joueur_courant);
 		
 		 for(ICarte c : ((IJoueur) cible).getCartes_Poses()){
 		 

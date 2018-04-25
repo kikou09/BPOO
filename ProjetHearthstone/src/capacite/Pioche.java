@@ -1,5 +1,6 @@
 package capacite;
 
+import java.lang.Object;
 import Plateau.Plateau;
 import application.HearthstoneException;
 import joueur.IJoueur;
@@ -15,8 +16,7 @@ public final class Pioche extends ACapacite {
 	
 	public final void executerAction(Object cible) throws HearthstoneException
 	{
-		if(cible==null)
-			throw new HearthstoneException("Il faut une cible");
+
 		cible=(IJoueur)Plateau.instancePlateau().getJoueurCourant();
 		for(int i=0;i<this.nb_pioche;i++)
 		{

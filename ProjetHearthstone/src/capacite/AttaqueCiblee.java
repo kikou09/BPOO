@@ -1,9 +1,13 @@
 package capacite;
 
+import java.lang.String;
+import java.lang.Object;
+import joueur.IJoueur;
 import joueur.Joueur;
 import Plateau.Plateau;
 import application.HearthstoneException;
 import carte.Carte;
+import carte.ICarte;
 import carte.Serviteur;
 
 public class AttaqueCiblee extends Capacite {
@@ -16,24 +20,25 @@ public class AttaqueCiblee extends Capacite {
 	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
-			System.out.println("erreur");
 			throw new IllegalArgumentException("Il faut une cible ");
 		}	
 		if(this.utilise) {
-			System.out.println("erreur");
 			throw new HearthstoneException("Capacite deja utilise ");
 		}
 		
-		if(!(cible instanceof Joueur) || !(cible instanceof Serviteur)) {
+		if(!(cible instanceof IJoueur) && !(cible instanceof Serviteur)) {
 			throw new IllegalArgumentException(" Vous devez attaquer le joueur ou un serviteur ");
 		}
 		
-		if(cible instanceof Joueur) {
+		if(getServiteurProvocation(cible))
+			throw new HearthstoneException("Un serviteur possede Provocation");
 		
-			cible=((Joueur)cible);
-			((Joueur)cible).getHeros().perteVie(this.degats);
+		if(cible instanceof IJoueur) {
 		
-			if(((Joueur)cible).getHeros().estMort()) {
+			cible=((IJoueur)cible);
+			((IJoueur)cible).getHeros().perteVie(this.degats);
+		
+			if(((IJoueur)cible).getHeros().estMort()) {
 				Plateau.instancePlateau().gagnePartie(Plateau.instancePlateau().getJoueurCourant());
 			}
 		
@@ -50,6 +55,22 @@ public class AttaqueCiblee extends Capacite {
 			return;
 		}
 		this.utilise=true;
+	}
+	
+	//Verifie si le joueur adverse possède un serviteur different de la cible avec provocation
+	private boolean getServiteurProvocation(Object cible) throws HearthstoneException {
+		
+		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
+
+		for(ICarte c : adversaire.getCartes_Poses()) {
+			
+			if(c instanceof Serviteur)
+				if(!(c.equals((Serviteur)cible)) && c.getCapacite() instanceof Provocation)
+						return true;
+		}
+		
+		return false;
+		
 	}
 
 }

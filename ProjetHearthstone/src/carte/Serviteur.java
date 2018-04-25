@@ -1,9 +1,11 @@
 package carte;
 
+import Plateau.Plateau;
 import application.HearthstoneException;
 import capacite.ACapacite;
 import carte.ICarte;
 import capacite.ICapacite;
+import capacite.Provocation;
 import joueur.IJoueur;
 import joueur.Joueur;
 
@@ -32,9 +34,13 @@ public final class Serviteur extends Carte {
 		super(s.getNom() , s.getCout() , s.getProprietaire());
 		this.point_attaque=s.getAttaque();
 		this.point_vie=s.getVie();
-		//this.capacite=s.getCapacite();
+		this.capacite=s.getCapacite();
 	}
 	
+	public ICapacite getCapacite() {
+		return this.capacite;
+	}
+
 	public int getAttaque(){
 		return this.point_attaque;
 	}
@@ -50,17 +56,36 @@ public final class Serviteur extends Carte {
 	public final void executerAction(Object o) throws HearthstoneException {
 		if (this.attente !=0)
 			throw new HearthstoneException ("Impossible de la jouer a  ce tour ci");
-		if(this.deja_attaque==false)
+		if(this.deja_attaque==true)
 			throw new HearthstoneException(" Deja joué ");
 			
-		//if(this.peutAttaquer(o))
-			//throw new HearthstoneException("Peut pas attaquer car un serviteur du plateau
-			//a provocation");
+		if(!(this.peutAttaquer(o)))
+			throw new HearthstoneException("Peut pas attaquer car un serviteur du plateau a provocation");
+		
+		if(!(o instanceof IJoueur) && !(o instanceof Serviteur))
+			throw new HearthstoneException("Cible pas du bon type");
 			
 		this.deja_attaque=true;
 		
-		//o est un joueur
-		//o est un serviteur
+		if(o instanceof IJoueur) {
+			((IJoueur) o).getHeros().perteVie(this.point_attaque);
+			if(((IJoueur) o).getHeros().estMort())
+				Plateau.instancePlateau().gagnePartie(Plateau.instancePlateau().getJoueurCourant());			
+		}
+		
+		if(o instanceof Serviteur) {
+			try {
+				((Serviteur)o).point_vie=-this.point_attaque;
+				if(((Serviteur)o).disparait()) {
+					Serviteur s=((Serviteur)o);
+					((Serviteur)o).getProprietaire().perdreCarte((ICarte)s);
+				}
+			}
+			catch(HearthstoneException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public final boolean disparait()
@@ -71,7 +96,7 @@ public final class Serviteur extends Carte {
 	public final String toString()
 	{
 		return " Serviteur [ " + super.toString() + "attaque = " + this.point_attaque + " vie = " + 
-				this.point_vie + " ] " ;
+				this.point_vie + " " +this.capacite + " ] " ;
 	}
 	
 	public final void subitAttaque ( int degat )
@@ -103,7 +128,14 @@ public final class Serviteur extends Carte {
 	
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+		this.setAttente(1);
+		if(this.capacite != null)
+			try {
+				this.capacite.executerAction(cible);
+			}
+			catch(HearthstoneException e) {
+				e.printStackTrace();
+			}
 		
 	}
 
@@ -115,20 +147,38 @@ public final class Serviteur extends Carte {
 
 	@Override
 	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
+		if(this.capacite!=null)
+			this.capacite.executerEffetFinTour();
 	}
 
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		this.deja_attaque=false;
+		if(this.attente>0)
+			this.attente--;
+		if(this.capacite != null)
+			this.capacite.executerEffetDebutTour();
 		
 	}
 
-	/*
+	
 	//Verifie si la cible peut être attaquer
 	public boolean peutAttaquer(Object cible) {
+		if(cible instanceof Serviteur && ((Serviteur)cible).capacite instanceof Provocation)
+			return true;
+		try {
+			for(ICarte c : Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant()).getCartes_Poses())
+			{
+				if(c instanceof Serviteur)
+					if(((Serviteur)c).capacite instanceof Provocation)
+						return false;
+			}
+		}
+		catch(HearthstoneException e) {
+			e.printStackTrace();
+		}
 		
+		return true;
+	}
 		
-	}*/
 }

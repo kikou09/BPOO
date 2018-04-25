@@ -1,6 +1,8 @@
 package carte;
 
 import application.HearthstoneException;
+import capacite.ICapacite;
+import capacite.Provocation;
 import joueur.IJoueur;
 import joueur.Joueur;
 
@@ -16,4 +18,5 @@ public abstract interface ICarte extends Cloneable{
 	public abstract  String	getNom() ;
 	public abstract int getMana();
 	public abstract IJoueur	getProprietaire() ;
+	public abstract ICapacite getCapacite();
 }

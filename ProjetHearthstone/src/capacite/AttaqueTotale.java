@@ -25,7 +25,7 @@ public class AttaqueTotale extends Capacite {
 		}
 		
 		cible=(IJoueur)cible;
-		cible=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
+		//cible=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
 		
 		
 		for(ICarte c :((IJoueur) cible).getCartes_Poses()){
