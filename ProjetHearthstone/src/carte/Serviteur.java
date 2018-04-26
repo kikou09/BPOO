@@ -80,6 +80,10 @@ public final class Serviteur extends Carte {
 					Serviteur s=((Serviteur)o);
 					((Serviteur)o).getProprietaire().perdreCarte((ICarte)s);
 				}
+				
+				this.point_vie-=((Serviteur)o).point_attaque;
+				if(this.disparait())
+					this.getProprietaire().perdreCarte(this);
 			}
 			catch(HearthstoneException e) {
 				e.printStackTrace();

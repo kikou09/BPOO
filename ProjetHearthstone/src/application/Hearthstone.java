@@ -172,7 +172,20 @@ public class Hearthstone {
 		
 		Object obj;
 		obj=Plateau.instancePlateau();
-		((IPlateau) obj).setJoueurCourant(joueur1);
+		/*try {
+			((IPlateau) obj).setJoueurCourant(joueur1);
+		}
+		catch(HearthstoneException e) {
+			
+			es.println(e.getMessage());
+		}*/
+		try {
+			joueur1.prendreTour();
+		}
+		catch(HearthstoneException e ) {
+			
+			es.println(e.getMessage());
+		}
 
 		while(((IPlateau)obj).estDemarree()) {
 			
@@ -218,8 +231,8 @@ public static String menu(){
 		
 		Interface monInterface=null;
 		monInterface=new InterfaceFinirTour(monInterface);
-		monInterface=new InterfaceJouerCarteMain(monInterface);
-		monInterface=new InterfaceJouerCarteJeu(monInterface);
+		//monInterface=new InterfaceJouerCarteMain(monInterface);
+		//monInterface=new InterfaceJouerCarteJeu(monInterface);
 		//monInterface=new InterfaceGetCible(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);
 		

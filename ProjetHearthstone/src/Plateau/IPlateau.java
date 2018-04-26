@@ -12,7 +12,7 @@ public abstract interface IPlateau {
 	public abstract void gagnePartie(IJoueur joueur);
 	public abstract IJoueur	getAdversaire(IJoueur joueur) throws HearthstoneException;
 	public abstract IJoueur	getJoueurCourant();
-	public abstract void setJoueurCourant(IJoueur joueur);
+	public abstract void setJoueurCourant(IJoueur joueur) throws HearthstoneException;
 
 }
 

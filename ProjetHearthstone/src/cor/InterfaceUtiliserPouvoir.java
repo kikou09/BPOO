@@ -12,7 +12,9 @@ public class InterfaceUtiliserPouvoir extends Interface {
 	}
 
 	@Override
-	public boolean saitInteragir(String choix) {
+	public boolean saitInteragir(Object choix) {
+		if(!(choix instanceof String))
+			return false;
 		return getDescription().equals(choix);
 	}
 
@@ -24,8 +26,8 @@ public class InterfaceUtiliserPouvoir extends Interface {
 		Object cible;
 		
 		String chaine="Que vises tu ?";
-		chaine+="\n		1. Le héros";
-		chaine+= "\n	2.Une carte \n"; 
+		chaine+="\n1. Le héros";
+		chaine+= "\n 2.Une carte \n"; 
 		es.println(chaine);
 		
 		int choix=es.readInt();

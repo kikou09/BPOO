@@ -1,6 +1,7 @@
 package cor;
 
 import Plateau.Plateau;
+import application.Hearthstone;
 import application.HearthstoneException;
 import carte.ICarte;
 
@@ -11,7 +12,9 @@ public class InterfaceJouerCarteJeu extends Interface {
 	}
 
 	@Override
-	public boolean saitInteragir(String choix) {
+	public boolean saitInteragir(Object choix) {
+		if(!(choix instanceof String))
+			return false;
 		return getDescription().equals(choix);
 	}
 
@@ -25,13 +28,21 @@ public class InterfaceJouerCarteJeu extends Interface {
 		String choix_carte=es.readLine();
 		
 		try {
-			ICarte carte=Plateau.instancePlateau().getJoueurCourant().getCarteEnJeu(choix_carte);
+			Object carte=Plateau.instancePlateau().getJoueurCourant().getCarteEnJeu(choix_carte);
+			o=carte;
 			if(carte==null)
 				throw new HearthstoneException("Cette carte n'est pas en jeu");
+			try {
+				Hearthstone.ihm.interagir(carte, o);
+			}
+			catch(Exception e) {
+				es.println(e.getMessage());
+			}
+
 		}
-		catch(HearthstoneException e) {
+		catch(HearthstoneException e1) {
 			
-			es.println(e.getMessage());
+			es.println(e1.getMessage());
 		}
 	}
 

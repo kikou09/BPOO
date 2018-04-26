@@ -11,7 +11,9 @@ public class InterfaceFinirTour extends Interface {
 	}
 
 	@Override
-	public boolean saitInteragir(String choix) {
+	public boolean saitInteragir(Object choix) {
+		if(!(choix instanceof String))
+			return false;
 		return getDescription().equals(choix);
 	}
 

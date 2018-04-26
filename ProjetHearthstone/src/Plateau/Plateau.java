@@ -38,7 +38,7 @@ public final class Plateau implements IPlateau {
 		return this.joueurCourant;
 	}
 	
-	public final void setJoueurCourant(IJoueur joueur)
+	public final void setJoueurCourant(IJoueur joueur) throws HearthstoneException
 	{
 		if(!this.joueurPresents.contains(joueur))
 			throw new IllegalArgumentException("Ce joueur n'est pas dans le jeu");
@@ -157,9 +157,8 @@ public final class Plateau implements IPlateau {
 	public final void finTour(IJoueur Joueur) throws HearthstoneException{
 		if(!this.demarree)
 			throw new HearthstoneException("La partie n'a pas encore commence");
-		else if (this.joueurCourant!=Joueur)
-			throw new HearthstoneException("C'est n'est pas ton tour");
-		this.getJoueurCourant().finirTour();
+		else if (!(this.joueurCourant.equals(Joueur)))
+			throw new HearthstoneException("Ce n'est pas ton tour");
 		this.getAdversaire(Joueur).prendreTour();
 	
 	}

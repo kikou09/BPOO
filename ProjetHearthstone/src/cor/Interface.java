@@ -15,11 +15,11 @@ public abstract class Interface {
 		return this.suivant;
 	}
 	
-	public abstract boolean saitInteragir(String choix);
+	public abstract boolean saitInteragir(Object choix);
 	public abstract void executerInteraction(Object o) throws HearthstoneException;
 	public abstract String getDescription();
 	
-	public void interagir(String choix , Object o) throws Exception{
+	public void interagir(Object choix , Object o) throws Exception{
 		
 		if(saitInteragir(choix))
 			executerInteraction(o);

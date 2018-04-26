@@ -9,7 +9,7 @@ public class InterfaceGetCible extends Interface {
 	}
 
 	@Override
-	public boolean saitInteragir(String choix) {
+	public boolean saitInteragir(Object choix) {
 		// TODO Auto-generated method stub
 		return false;
 	}

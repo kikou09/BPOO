@@ -9,7 +9,7 @@ public class InterfaceQuitter extends Interface {
 	}
 
 	@Override
-	public boolean saitInteragir(String choix) {
+	public boolean saitInteragir(Object choix) {
 		
 		return getDescription().equals(choix);
 		

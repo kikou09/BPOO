@@ -92,6 +92,7 @@ public final class Joueur implements IJoueur {
 			mana++;
 		this.stockMana=this.mana;
 		piocher();
+		this.joue=true;
 		Plateau.instancePlateau().setJoueurCourant(this);
 		if(this.heros.getPouvoir() != null)
 			this.heros.getPouvoir().executerEffetDebutTour();
@@ -104,6 +105,7 @@ public final class Joueur implements IJoueur {
 	}
 		
 	public final void finirTour () throws HearthstoneException {
+		System.out.println(this.joue);
 		if(!this.joue)
 			throw new HearthstoneException ("Ce n'est pas ton tour ");
 		for(ICarte c : this.cartes_poses)
@@ -124,13 +126,13 @@ public final class Joueur implements IJoueur {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Joueur other = (Joueur) obj;
-		if (mana != other.mana)
+		IJoueur other = (IJoueur) obj;
+		if (mana != other.getMana())
 			return false;
 		if (pseudo == null) {
-			if (other.pseudo != null)
+			if (other.getPseudo() != null)
 				return false;
-		} else if (!pseudo.equals(other.pseudo))
+		} else if (!pseudo.equals(other.getPseudo()))
 			return false;
 		return true;
 	}
@@ -195,9 +197,9 @@ public final class Joueur implements IJoueur {
 	
 	
 	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
-		if(this.heros.getPouvoir() ==null)
+		if(this.heros.getPouvoir()==null)
 			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
-		this.heros.getPouvoir().executerEffetDebutTour();
+		this.heros.getPouvoir().executerAction(cible);
 	}
 	
 	
