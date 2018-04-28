@@ -40,11 +40,9 @@ public class Invocation extends ACapacite {
 	public void executerAction(Object cible) throws HearthstoneException { 
 		
 		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
-		System.out.println(proprietaire);
 		Serviteur s=(Serviteur)(this.serviteur_invoque.clone());
 		s.setProprietaire(proprietaire);
 		proprietaire.getCartes_Poses().add(s);
-		System.out.println(Plateau.instancePlateau());
 		s.executerEffetDebutMiseEnJeu(null);
 		
 		

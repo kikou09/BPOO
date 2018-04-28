@@ -20,18 +20,17 @@ public final class Sort extends Carte {
 
 	@Override
 	public void executerAction(Object cible) {
-		try {
-			this.capacite.executerAction(cible);
-			super.getProprietaire().perdreCarte(this);
-		}
-		catch(HearthstoneException e) {
-			e.printStackTrace();
-		}
+		
 		
 	}
 
 	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) {}
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
+		
+			this.capacite.executerAction(cible);
+			super.getProprietaire().perdreCarte(this);
+		
+	}
 
 	@Override
 	public void executerEffetDisparition(Object cible) {}	

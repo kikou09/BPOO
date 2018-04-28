@@ -69,13 +69,13 @@ public final class Plateau implements IPlateau {
 		
 		String chaine ="\n\n\t\t Cartes posées sur le plateau : \n\n";
 		
-		/*if(joueur.cartes_poses.size()!=0) {
-			for(ICarte c: this.cartes_poses) {
+		if(joueur.getCartes_Poses().size()!=0) {
+			for(ICarte c: joueur.getCartes_Poses()) {
 			
 			chaine= chaine + "\t" + c + "\n";
 			
 			}
-		}*/
+		}
 		
 		return chaine;
 	}

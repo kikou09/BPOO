@@ -20,14 +20,14 @@ public class AttaqueCiblee extends Capacite {
 	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
-			throw new IllegalArgumentException("Il faut une cible ");
+			throw new HearthstoneException("Il faut une cible ");
 		}	
 		if(this.utilise) {
 			throw new HearthstoneException("Capacite deja utilise ");
 		}
 		
 		if(!(cible instanceof IJoueur) && !(cible instanceof Serviteur)) {
-			throw new IllegalArgumentException(" Vous devez attaquer le joueur ou un serviteur ");
+			throw new HearthstoneException(" Vous devez attaquer le joueur ou un serviteur ");
 		}
 		
 		if(getServiteurProvocation(cible))
@@ -42,7 +42,7 @@ public class AttaqueCiblee extends Capacite {
 				Plateau.instancePlateau().gagnePartie(Plateau.instancePlateau().getJoueurCourant());
 			}
 		
-			return;
+			
 		}
 		
 		if(cible instanceof Serviteur)
@@ -52,8 +52,9 @@ public class AttaqueCiblee extends Capacite {
 			if(((Serviteur)cible).disparait()){
 				((Serviteur)cible).getProprietaire().perdreCarte(((Carte)cible));
 			}
-			return;
+			
 		}
+		
 		this.utilise=true;
 	}
 	

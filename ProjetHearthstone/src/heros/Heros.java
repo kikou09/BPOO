@@ -12,7 +12,6 @@ public final class Heros implements Cloneable{
 	private int pt_vie;
 	private int vie_max;
 	private int jouer; 
-	private static ArrayList<Heros> listeHeros ;
 	private ArrayList<ICarte> cartes ;
 	private ICapacite pouvoir ; 
 

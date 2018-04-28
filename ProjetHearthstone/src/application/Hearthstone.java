@@ -115,7 +115,6 @@ public class Hearthstone {
 	public static void main(String[] args) {
 		
 		ihm=initialiserInterface();
-		//IPlateau plateau=new Plateau ();
 		
 		if(ihm==null){
 			es.println("L'application ne fait rien ");
@@ -172,13 +171,7 @@ public class Hearthstone {
 		
 		Object obj;
 		obj=Plateau.instancePlateau();
-		/*try {
-			((IPlateau) obj).setJoueurCourant(joueur1);
-		}
-		catch(HearthstoneException e) {
-			
-			es.println(e.getMessage());
-		}*/
+
 		try {
 			joueur1.prendreTour();
 		}
@@ -231,7 +224,7 @@ public static String menu(){
 		
 		Interface monInterface=null;
 		monInterface=new InterfaceFinirTour(monInterface);
-		//monInterface=new InterfaceJouerCarteMain(monInterface);
+		monInterface=new InterfaceJouerCarteMain(monInterface);
 		//monInterface=new InterfaceJouerCarteJeu(monInterface);
 		//monInterface=new InterfaceGetCible(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);

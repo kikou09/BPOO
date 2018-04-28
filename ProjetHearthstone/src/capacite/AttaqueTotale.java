@@ -18,7 +18,7 @@ public class AttaqueTotale extends Capacite {
 	public void executerAction(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
-			throw new IllegalArgumentException("Il faut une cible ");
+			throw new HearthstoneException("Il faut une cible ");
 		}	
 		if(this.utilise) {
 			throw new HearthstoneException ("Capacite deja utilise ");

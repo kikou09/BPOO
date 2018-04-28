@@ -48,7 +48,7 @@ public class EffetPermanent extends ACapacite {
 		 {
 		 		if ( c instanceof Serviteur){
 		 			((Serviteur)c).gagneAttaque(-this.attaque_bonus);
-		 			((Serviteur)c).gagneVie(-this.vie_bonus);
+		 			((Serviteur)c).subitAttaque(this.vie_bonus);
 		 		}
 		 }
 		

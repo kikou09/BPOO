@@ -9,8 +9,7 @@ public class Provocation extends ACapacite {
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	@Override

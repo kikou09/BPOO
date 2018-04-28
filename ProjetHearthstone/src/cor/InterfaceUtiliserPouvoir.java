@@ -27,7 +27,7 @@ public class InterfaceUtiliserPouvoir extends Interface {
 		
 		String chaine="Que vises tu ?";
 		chaine+="\n1. Le héros";
-		chaine+= "\n 2.Une carte \n"; 
+		chaine+= "\n2.Une carte \n"; 
 		es.println(chaine);
 		
 		int choix=es.readInt();

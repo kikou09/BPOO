@@ -1,5 +1,6 @@
 package capacite;
 
+import application.HearthstoneException;
 import carte.Serviteur;
 public final class Charge extends ACapacite{
 	
@@ -9,13 +10,13 @@ public final class Charge extends ACapacite{
 	}
 
 	@Override
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException  {
 		
 		if(cible==null)
-			throw new IllegalArgumentException("Charge necessite une cible");
+			throw new HearthstoneException("Charge necessite une cible");
 			
 		if(!(cible instanceof Serviteur))
-			throw new IllegalArgumentException("La cible doit être un serviteur");
+			throw new HearthstoneException("La cible doit être un serviteur");
 			
 		cible=((Serviteur)cible);
 		((Serviteur)cible).setAttente(0);
@@ -41,8 +42,16 @@ public final class Charge extends ACapacite{
 	}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+		
+		if(cible==null)
+			throw new HearthstoneException("Charge necessite une cible");
+			
+		if(!(cible instanceof Serviteur))
+			throw new HearthstoneException("La cible doit être un serviteur");
+			
+		cible=((Serviteur)cible);
+		((Serviteur)cible).setAttente(0);
 		
 	}
 

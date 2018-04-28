@@ -15,7 +15,7 @@ public class Chasseur extends Capacite {
 public void executerAction(Object cible) throws HearthstoneException {
 		
 		if (cible==null) {
-			throw new IllegalArgumentException("Marque du chasseur necessite une cible");
+			throw new HearthstoneException("Marque du chasseur necessite une cible");
 		}
 		
 		if (this.utilise) {
@@ -24,7 +24,7 @@ public void executerAction(Object cible) throws HearthstoneException {
 				
 		if(!(cible instanceof Serviteur))
 		{
-			throw new IllegalArgumentException("Cible doit être un serviteur");
+			throw new HearthstoneException("Cible doit être un serviteur");
 		}
 		
 		((Serviteur) cible).subitAttaque(((Serviteur) cible).getVie() - 1);

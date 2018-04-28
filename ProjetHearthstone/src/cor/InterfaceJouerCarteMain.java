@@ -37,8 +37,14 @@ public class InterfaceJouerCarteMain extends Interface {
 			//Capacite qui necessite une cible
 			catch(HearthstoneException e) {
 				
-				es.println("Erreur besoin d'une cible");
-				//Object cible = application.Hearthstone.ihm.interagir(choix, carte);
+				es.println(e.getMessage());
+				try {
+					application.Hearthstone.ihm.interagir(carte, carte);
+				}
+				catch(Exception e1) {
+					
+					es.println(e1.getMessage());
+				}
 			}
 		}
 		catch(HearthstoneException e) {
