@@ -19,6 +19,9 @@ public final class ImageMirroir extends ACapacite{
 		
 		Serviteur s_invoque1= new Serviteur("Serviteur de Jaina", 0 , joueur_courant , 0 , 2 , new Provocation());
 		Serviteur s_invoque2= (Serviteur) s_invoque1.clone();
+		
+		joueur_courant.getCartes_Poses().add(s_invoque1);
+		joueur_courant.getCartes_Poses().add(s_invoque2);
 	}
 
 	@Override

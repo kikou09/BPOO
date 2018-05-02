@@ -23,7 +23,7 @@ public class InterfaceUtiliserPouvoir extends Interface {
 	public void executerInteraction(Object o) throws HearthstoneException {
 		
 		Console es=new Console();
-		Object cible;
+		Object cible = null;
 		
 		String chaine="Que vises tu ?";
 		chaine+="\n1. Le héros";
@@ -40,10 +40,12 @@ public class InterfaceUtiliserPouvoir extends Interface {
 				String chaine2="Quelle carte vises tu ?";
 				es.println(chaine2);
 				String nom_carte=es.readLine();
+				
+				cible=((ICarte)cible);
 				cible=adversaire.getCarteEnJeu(nom_carte);
 				if(cible==null)
 					throw new HearthstoneException("L'adversaire n'a pas cette carte en jeu");
-			Plateau.instancePlateau().getJoueurCourant().jouerCarte((ICarte)o, cible);
+			Plateau.instancePlateau().getJoueurCourant().utiliserPouvoir(cible);
 			}
 			
 		}

@@ -21,8 +21,6 @@ public class LachezChiens extends Invocation {
 		IJoueur joueur=Plateau.instancePlateau().getJoueurCourant();
 		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(joueur);
 		
-		if(cible==null)
-			throw new HearthstoneException("Il faut une cible");
 		
 		 int nb_serviteurs=0;
 		 for ( ICarte c : adversaire.getCartes_Poses())

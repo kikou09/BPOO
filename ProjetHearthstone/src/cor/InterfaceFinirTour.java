@@ -2,7 +2,6 @@ package cor;
 
 import Plateau.Plateau;
 import application.HearthstoneException;
-import forme.Cercle;
 
 public class InterfaceFinirTour extends Interface {
 
@@ -26,7 +25,7 @@ public class InterfaceFinirTour extends Interface {
 		}
 		catch(HearthstoneException e){
 			
-			e.printStackTrace();
+			es.println(e.getMessage());
 		}
 	}
 

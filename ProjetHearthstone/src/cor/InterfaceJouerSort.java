@@ -4,21 +4,19 @@ import Plateau.Plateau;
 import application.HearthstoneException;
 import carte.ICarte;
 import carte.Serviteur;
+import carte.Sort;
 
-public class InterfaceExecuterAction extends Interface {
+public class InterfaceJouerSort extends Interface {
 
-	public InterfaceExecuterAction(Interface suivant) {
+	public InterfaceJouerSort(Interface suivant) {
 		super(suivant);
 	}
 
 	@Override
 	public boolean saitInteragir(Object choix) {
-		if(choix instanceof Serviteur)
-			if(((Serviteur)choix).getProprietaire().getCartes_Poses().contains(((Serviteur)choix))) {
-				System.out.println("Carte posee");
-				return true;
-			}
-		return false;
+		if(!(choix instanceof Sort) && !(choix instanceof Serviteur))
+			return false;
+		return true;
 	}
 
 	@Override
@@ -33,7 +31,7 @@ public class InterfaceExecuterAction extends Interface {
 		int choix=es.readInt();
 		if(choix==1) {
 			
-			Plateau.instancePlateau().getJoueurCourant().utiliserCarte(((ICarte)o)
+			Plateau.instancePlateau().getJoueurCourant().jouerCarte(((ICarte)o)
 					,Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant()));
 		}
 		else {
@@ -44,11 +42,10 @@ public class InterfaceExecuterAction extends Interface {
 			Object cible=(Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant()).getCarteEnJeu(choix_carte));
 			if(cible==null)
 				throw new HearthstoneException("Cette carte n'est pas en jeu");
-			Plateau.instancePlateau().getJoueurCourant().utiliserCarte((ICarte)o, cible);
+			Plateau.instancePlateau().getJoueurCourant().jouerCarte((ICarte)o, cible);
 		}
 
 	}
-
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub

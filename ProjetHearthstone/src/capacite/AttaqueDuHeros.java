@@ -1,5 +1,6 @@
 package capacite;
 
+import Plateau.IPlateau;
 import Plateau.Plateau;
 import application.HearthstoneException;
 import carte.Serviteur;
@@ -13,24 +14,19 @@ public class AttaqueDuHeros extends Capacite {
 		super(n,des,d);
 	}
 	
-	public void executerAction(Object cible) throws HearthstoneException {
-		
-		if(cible==null) {
-			throw new HearthstoneException("Il faut une cible ");
-		}	
+	public void executerAction(Object o) throws HearthstoneException {
+			
 		if(this.utilise) {
 			throw new HearthstoneException ("Capacite deja utilise ");
 		}
 		
-		if(!(cible instanceof IJoueur)) {
-			throw new HearthstoneException(" Vous devez attaquer le joueur adverse ");
-		}
-		 
-		cible=((IJoueur)cible);
-		((Joueur)cible).getHeros().perteVie(this.degats);
+		o=Plateau.instancePlateau();
+		IJoueur joueur_courant=((IPlateau)o).getJoueurCourant();
+		IJoueur adversaire=((IPlateau)o).getAdversaire(joueur_courant);
+		adversaire.getHeros().perteVie(this.degats);
 		
-		if(((Joueur)cible).getHeros().estMort()) {
-			Plateau.instancePlateau().gagnePartie(Plateau.instancePlateau().getJoueurCourant());
+		if(adversaire.getHeros().estMort()) {
+			((IPlateau)o).gagnePartie(joueur_courant);
 		}
 		this.utilise=true;
 		

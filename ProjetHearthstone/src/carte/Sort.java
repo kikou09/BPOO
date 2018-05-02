@@ -29,6 +29,7 @@ public final class Sort extends Carte {
 		
 			this.capacite.executerAction(cible);
 			super.getProprietaire().perdreCarte(this);
+			
 		
 	}
 

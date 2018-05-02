@@ -22,8 +22,6 @@ public final class Serviteur extends Carte {
 		super(n,cout,j);
 		if(vie<=0)
 			throw new IllegalArgumentException("Les points de vies doivent etre positif");
-		if(attaque==0)
-			throw new IllegalArgumentException("Les points d'attaque ne doivent pas être egaaux à  0");
 		this.point_attaque=attaque;
 		this.point_vie=vie;
 		this.capacite=c;

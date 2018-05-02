@@ -3,7 +3,6 @@ package cor;
 import Plateau.Plateau;
 import application.Hearthstone;
 import application.HearthstoneException;
-import carte.ICarte;
 
 public class InterfaceJouerCarteJeu extends Interface {
 

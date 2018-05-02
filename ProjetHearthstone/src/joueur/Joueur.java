@@ -167,7 +167,7 @@ public final class Joueur implements IJoueur {
 			this.mana=this.mana + carte.getMana();
 			this.main.add(carte);
 			this.cartes_poses.remove(carte);
-			throw new HearthstoneException ("Erreur de cible");
+			throw new HearthstoneException (e.getMessage());
 		}
 	}
 	
@@ -197,6 +197,7 @@ public final class Joueur implements IJoueur {
 	
 	
 	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
+		System.out.println("ok");
 		if(this.heros.getPouvoir()==null)
 			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
 		this.heros.getPouvoir().executerAction(cible);

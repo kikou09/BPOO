@@ -10,10 +10,12 @@ import carte.Serviteur;
 import carte.Sort;
 import cor.Console;
 import cor.Interface;
+import cor.InterfaceCharge;
+import cor.InterfaceExecuterAction;
 import cor.InterfaceFinirTour;
-import cor.InterfaceGetCible;
 import cor.InterfaceJouerCarteJeu;
 import cor.InterfaceJouerCarteMain;
+import cor.InterfaceJouerSort;
 import cor.InterfaceQuitter;
 import cor.InterfaceUtiliserPouvoir;
 import joueur.IJoueur;
@@ -45,7 +47,7 @@ public class Hearthstone {
 		cartesJaina.add(flamme);
 		ICarte givre = new Sort ("Eclair de givre", 2, j, new AttaqueCiblee("Attaque de givre", "inflige 3 pts de dégats au personnages cible", 3));
 		cartesJaina.add(givre);
-		ICarte arcanes = new Sort ("Intelignece des arcanes", 2, j, new Pioche(2));
+		ICarte arcanes = new Sort ("Intelligence des arcanes", 2, j, new Pioche(2));
 		cartesJaina.add(arcanes);
 		ICarte mirroir = new Sort ("Image mirroir", 1, j, new ImageMirroir());
 		cartesJaina.add(mirroir);
@@ -206,10 +208,14 @@ public static String menu(){
 			i = i.getSuivant();
 		}
 		
-		int n = 1;
-		for (String s : menu) {
-			es.println(""+n+". "+s);
-			n++;
+		int n = 0;
+		String s;
+		while(n<4) {
+				s=menu.get(n);
+				int nb=n+1;
+				es.println(""+nb+". "+s);
+				n++;
+			
 		}
 		
 		es.println("");
@@ -223,10 +229,12 @@ public static String menu(){
 	public static Interface initialiserInterface() {
 		
 		Interface monInterface=null;
+		monInterface=new InterfaceJouerSort(monInterface);
+		monInterface=new InterfaceCharge(monInterface);
+		monInterface=new InterfaceExecuterAction(monInterface);
 		monInterface=new InterfaceFinirTour(monInterface);
 		monInterface=new InterfaceJouerCarteMain(monInterface);
-		//monInterface=new InterfaceJouerCarteJeu(monInterface);
-		//monInterface=new InterfaceGetCible(monInterface);
+		monInterface=new InterfaceJouerCarteJeu(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);
 		
 		
