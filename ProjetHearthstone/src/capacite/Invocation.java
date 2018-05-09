@@ -41,8 +41,9 @@ public class Invocation extends ACapacite {
 		
 		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
 		Serviteur s=(Serviteur)(this.serviteur_invoque.clone());
-		s.setProprietaire(proprietaire);
 		proprietaire.getCartes_Poses().add(s);
+		System.out.println(proprietaire.getCartes_Poses());
+		s.setProprietaire(proprietaire);
 		s.executerEffetDebutMiseEnJeu(null);
 		
 		

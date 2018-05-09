@@ -11,6 +11,7 @@ import carte.Sort;
 import cor.Console;
 import cor.Interface;
 import cor.InterfaceCharge;
+import cor.InterfaceChasseur;
 import cor.InterfaceExecuterAction;
 import cor.InterfaceFinirTour;
 import cor.InterfaceJouerCarteJeu;
@@ -210,7 +211,7 @@ public static String menu(){
 		
 		int n = 0;
 		String s;
-		while(n<4) {
+		while(n<5) {
 				s=menu.get(n);
 				int nb=n+1;
 				es.println(""+nb+". "+s);
@@ -231,11 +232,14 @@ public static String menu(){
 		Interface monInterface=null;
 		monInterface=new InterfaceJouerSort(monInterface);
 		monInterface=new InterfaceCharge(monInterface);
+		monInterface= new InterfaceChasseur(monInterface);
 		monInterface=new InterfaceExecuterAction(monInterface);
+		monInterface=new InterfaceQuitter(monInterface);
 		monInterface=new InterfaceFinirTour(monInterface);
 		monInterface=new InterfaceJouerCarteMain(monInterface);
 		monInterface=new InterfaceJouerCarteJeu(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);
+		//monInterface=new InterfaceTest(monInterface);
 		
 		
 		return monInterface;

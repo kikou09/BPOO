@@ -179,20 +179,18 @@ public final class Joueur implements IJoueur {
 		this.mana=this.mana - carte.getMana();
 		this.main.remove(carte);
 		this.cartes_poses.add(carte);
-		try {
-			
-			carte.executerEffetDebutMiseEnJeu(cible);
-		}
-		catch(HearthstoneException e) {
-			
-			throw new HearthstoneException ("Erreur de cible");
-		}
+		
+		carte.executerEffetDebutMiseEnJeu(cible);
+
+		
 	}
 
 	public final void perdreCarte(ICarte carte) throws HearthstoneException{
 		if (!this.cartes_poses.contains(carte))
 			throw new HearthstoneException("Carte non posees sur le plateau");
+		carte.executerEffetDisparition(null);
 		this.cartes_poses.remove(carte);
+		
 	}
 	
 	

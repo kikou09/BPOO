@@ -18,9 +18,8 @@ public final class Charge extends ACapacite{
 		if(!(cible instanceof Serviteur))
 			throw new HearthstoneException("La cible doit être un serviteur");
 			
-		cible=((Serviteur)cible);
-		((Serviteur)cible).setAttente(0);
-		
+		System.out.println("ok");
+		((Serviteur)cible).setAttente(0);		
 	}
 
 	@Override

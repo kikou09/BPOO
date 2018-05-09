@@ -26,22 +26,11 @@ public class EffetPermanent extends ACapacite {
 
 	@Override
 	public void executerEffetDebutTour() {
-		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
-		
-		for(ICarte c : joueur_courant.getCartes_Poses())
-		  {
-		 		if ( c instanceof Serviteur){
-		 			((Serviteur) c).gagneAttaque(this.attaque_bonus);
-		 			((Serviteur) c).gagneVie(this.vie_bonus);
-		 		}
-		 }
+
 	}
 	
 	@Override
-	public void executerEffetDisparition(Object cible) {		
-	}
-
-	public void executerEffetFinTour() {
+	public void executerEffetDisparition(Object cible) {
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		
 		 for(ICarte c : joueur_courant.getCartes_Poses())
@@ -51,13 +40,26 @@ public class EffetPermanent extends ACapacite {
 		 			((Serviteur)c).subitAttaque(this.vie_bonus);
 		 		}
 		 }
+	}
+
+	public void executerEffetFinTour() {
 		
 		
 	}
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
+		
+		for(ICarte c : joueur_courant.getCartes_Poses())
+		  {
+		 		if ( c instanceof Serviteur){
+		 			((Serviteur) c).gagneAttaque(this.attaque_bonus);
+		 			((Serviteur) c).gagneVie(this.vie_bonus);
+		 		}
+		 }
+		
+		this.utilise=true;
 		
 	}
 }

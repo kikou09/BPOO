@@ -97,8 +97,14 @@ public final class Serviteur extends Carte {
 	
 	public final String toString()
 	{
-		return " Serviteur [ " + super.toString() + "attaque = " + this.point_attaque + " vie = " + 
+		String chaine= " Serviteur [ " + super.toString() + "attaque = " + this.point_attaque + " vie = " + 
 				this.point_vie + " " +this.capacite + " ] " ;
+		if(this.attente==0)
+			chaine+="(jouable)";
+		else
+			chaine+="(non jouable)";
+		
+		return chaine;
 	}
 	
 	public final void subitAttaque ( int degat )
@@ -143,7 +149,8 @@ public final class Serviteur extends Carte {
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+		if(this.capacite!=null)
+			this.capacite.executerEffetDisparition(cible);
 		
 	}
 

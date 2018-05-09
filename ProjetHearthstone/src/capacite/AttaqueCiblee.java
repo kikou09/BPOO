@@ -35,7 +35,6 @@ public class AttaqueCiblee extends Capacite {
 		
 		if(cible instanceof IJoueur) {
 		
-			System.out.println("ok2");
 			cible=((IJoueur)cible);
 			((IJoueur)cible).getHeros().perteVie(this.degats);
 		

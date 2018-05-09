@@ -1,5 +1,8 @@
 package capacite;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import Plateau.Plateau;
 import application.HearthstoneException;
 import carte.ICarte;
@@ -20,19 +23,22 @@ public class AttaqueMassive extends Capacite {
 		}
 		
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
-		cible=(IJoueur)cible;
-		//cible=Plateau.instancePlateau().getAdversaire(joueur_courant);
+		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(joueur_courant);
+		ArrayList<ICarte> copie_cartes_poses=(ArrayList<ICarte>) adversaire.getCartes_Poses().clone();
 		
-		 for(ICarte c : ((IJoueur) cible).getCartes_Poses()){
-		 
-		  		if(c instanceof Serviteur){
-		  			((Serviteur) c).subitAttaque(this.degats);
-		  			if(((Serviteur)c).disparait())
-		  				((IJoueur) cible).perdreCarte((Serviteur)c);
+		Iterator<ICarte> c=copie_cartes_poses.iterator();
+		while(c.hasNext()){
+			
+				ICarte element=(ICarte) c.next();
+		  		if(element instanceof Serviteur){
+		  			((Serviteur) element).subitAttaque(this.degats);
+		  			if(((Serviteur) element).disparait()) {
+		  				((IJoueur) adversaire).perdreCarte((Serviteur)element);
+		  			}
 		  		}
 		  }
 		 
 		this.utilise=true;
-		
+				
 	}
 }

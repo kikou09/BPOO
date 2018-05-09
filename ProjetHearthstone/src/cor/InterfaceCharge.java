@@ -3,6 +3,7 @@ package cor;
 import Plateau.Plateau;
 import application.HearthstoneException;
 import capacite.Charge;
+import carte.ICarte;
 import carte.Sort;
 
 public class InterfaceCharge extends Interface {
@@ -24,18 +25,24 @@ public class InterfaceCharge extends Interface {
 	public void executerInteraction(Object o) throws HearthstoneException {
 
 		Console es=new Console();
+		if(Plateau.instancePlateau().getJoueurCourant().getCartes_Poses().size()==0)
+			throw new HearthstoneException("Vous n'avez aucune carte en jeu");
+		
 		String chaine="Sur quel serviteur de ton jeu ?";
 		es.println(chaine);
 		
-		String carte=es.readLine();
+		String choix_carte=es.readLine();
+		ICarte carte=Plateau.instancePlateau().getJoueurCourant().getCarteEnJeu(choix_carte);
 		try {
-			if(Plateau.instancePlateau().getJoueurCourant().getCarteEnJeu(carte)==null)
+			if(carte==null)
 				throw new HearthstoneException("Cette carte n'est pas en jeu");
 	
 		}
 		catch(HearthstoneException e) {
 			es.println(e.getMessage());
 		}
+		
+		Plateau.instancePlateau().getJoueurCourant().jouerCarte(((ICarte)o), carte);
 	}
 
 	@Override
