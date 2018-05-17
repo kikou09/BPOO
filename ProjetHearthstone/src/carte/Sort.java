@@ -1,40 +1,12 @@
 package carte;
 
 import joueur.IJoueur;
-import joueur.Joueur;
-import heros.Heros;
 import application.HearthstoneException;
-import capacite.ACapacite;
 import capacite.ICapacite;
 
 public final class Sort extends Carte {
 	
 	private ICapacite capacite;
-
-
-	@Override
-	public boolean disparait() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void executerAction(Object cible) {
-		
-		
-	}
-
-	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
-		
-			this.capacite.executerAction(cible);
-			super.getProprietaire().perdreCarte(this);
-			
-		
-	}
-
-	@Override
-	public void executerEffetDisparition(Object cible) {}	
 	
 	public Sort ( String n , int cout , IJoueur joueur , ICapacite c )
 	{
@@ -43,7 +15,26 @@ public final class Sort extends Carte {
 			throw new IllegalArgumentException("la capacité ne doit pas être null");
 		this.capacite=c;
 	}
+
+	@Override
+	public boolean disparait() {
+		return true;
+	}
+
+	@Override
+	public void executerAction(Object cible) {	
+	}
+
 	
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
+		
+			this.capacite.executerEffetMiseEnJeu(cible);
+			super.getProprietaire().perdreCarte(this);	
+	}
+
+	
+	public void executerEffetDisparition(Object cible) {}	
+		
 	
 	public ICapacite getCapacite(){
 		return this.capacite;
@@ -53,10 +44,8 @@ public final class Sort extends Carte {
 		return "Sort [ " + super.toString() + this.capacite +  "]" ;
 	}
 
-	@Override
 	public void executerEffetFinTour() {}
 
-	@Override
 	public void executerEffetDebutTour() {}
 
 }

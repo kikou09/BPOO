@@ -1,5 +1,9 @@
 package capacite;
 
+/**
+ * C'est la classe abstraite de base qui va etre etendue par d'autres
+ */
+
 public abstract class ACapacite implements ICapacite {
 	private String nom;
 	private String description;

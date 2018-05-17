@@ -10,7 +10,6 @@ import carte.ICarte;
 public final class Plateau implements IPlateau {
 	
 	private static Plateau plateau=null;
-	private IJoueur adversaire ;
 	private IJoueur joueurCourant;
 	private boolean demarree;
 	private ArrayList<IJoueur> joueurPresents;   //JoueursPresents dans le jeu 
@@ -25,7 +24,6 @@ public final class Plateau implements IPlateau {
 	
 	private Plateau()   //Constructeur
 	{
-		this.adversaire=null;
 		this.joueurCourant=null;
 		this.demarree=false;
 		this.joueurPresents=new ArrayList<IJoueur>();
@@ -113,11 +111,15 @@ public final class Plateau implements IPlateau {
 		
 		ch+=dessinerCartesPoses(this.joueurPresents.get(0));
 		
-		ch+=("\t\t __________________________________________\n");
-		for(int i=0;i<4;i++) 										
-			ch+=("\t\t|                                          |\n");
-		
-		ch+=("\t\t|__________________________________________|\n\n");
+		ch+=("\t\t _________________________________________\n");
+		ch+=("\t\t|          __    __    __    __           |\n");
+		ch+=("\t\t|         |__|  |__|  |__|  |__|          |\n");
+		ch+=("\t\t|                                         |\n");
+		ch+=("\t\t|                                         |\n");
+		ch+=("\t\t|                                         |\n");
+		ch+=("\t\t|          __    __    __    __           |\n");
+		ch+=("\t\t|         |__|  |__|  |__|  |__|          |\n");
+		ch+=("\t\t|_________________________________________|\n\n");
 		
 		ch+=this.joueurPresents.get(1);
 		

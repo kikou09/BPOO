@@ -10,6 +10,7 @@ import carte.Carte;
 import carte.ICarte;
 import carte.Serviteur;
 
+
 public class AttaqueCiblee extends Capacite {
 	
 	public AttaqueCiblee(String n , String des , int d) {
@@ -17,7 +18,17 @@ public class AttaqueCiblee extends Capacite {
 		super(n,des,d);
 	}
 	
-	public void executerAction(Object cible) throws HearthstoneException {
+	/**
+	 * Execute l'Effet de Mise En Jeu
+	 * @param cible
+	 * @return none
+	 * @throws HearthstoneException : si la cible est nulle, 
+	 * 								  si la capacité mise en jeu est deja utilisée, 
+	 * 								  si la cible n'est pas du bon type,
+	 * 								  si un serviteur adverse a la capacité "provocation".
+	 * @see getServiteurProvocation
+	 */
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
 			throw new HearthstoneException("Il faut une cible ");
@@ -58,7 +69,12 @@ public class AttaqueCiblee extends Capacite {
 		this.utilise=true;
 	}
 	
-	//Verifie si le joueur adverse possède un serviteur different de la cible avec provocation
+	/**
+	 * Verifie si le joueur adverse possède un serviteur different de la cible avec provocation
+	 * @param cible
+	 * @return boolean si au moins une des cartes de joueur adverse a provocation
+	 * @throws HearthstoneException : @see class Plateau
+	 */
 	private boolean getServiteurProvocation(Object cible) throws HearthstoneException {
 		
 		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());

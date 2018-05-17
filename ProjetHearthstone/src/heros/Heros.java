@@ -3,7 +3,6 @@ package heros;
 import java.util.ArrayList;
 
 import capacite.ICapacite;
-import carte.Carte;
 import carte.ICarte;
 
 public final class Heros implements Cloneable{
@@ -11,7 +10,6 @@ public final class Heros implements Cloneable{
 	private String nom ;
 	private int pt_vie;
 	private int vie_max;
-	private int jouer; 
 	private ArrayList<ICarte> cartes ;
 	private ICapacite pouvoir ; 
 

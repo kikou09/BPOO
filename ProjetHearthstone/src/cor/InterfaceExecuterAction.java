@@ -15,7 +15,6 @@ public class InterfaceExecuterAction extends Interface {
 	public boolean saitInteragir(Object choix) {
 		if(choix instanceof Serviteur)
 			if(((Serviteur)choix).getProprietaire().getCartes_Poses().contains(((Serviteur)choix))) {
-				System.out.println("Carte posee");
 				return true;
 			}
 		return false;

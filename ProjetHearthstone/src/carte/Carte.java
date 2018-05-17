@@ -2,6 +2,7 @@ package carte ;
 import joueur.IJoueur;
 import joueur.Joueur;
 
+
 public abstract class Carte implements ICarte{
 
 	private String nom;

@@ -18,7 +18,6 @@ public final class Charge extends ACapacite{
 		if(!(cible instanceof Serviteur))
 			throw new HearthstoneException("La cible doit être un serviteur");
 			
-		System.out.println("ok");
 		((Serviteur)cible).setAttente(0);		
 	}
 
@@ -39,8 +38,15 @@ public final class Charge extends ACapacite{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
+	
+	/**
+	 * Met l'attente du serviteur cible du joueur courant à 0 (il n'a pas besoin d'attendre avant d'attaquer)
+	 * @param cible 
+	 * @throws HearthstoneException :
+	 * 						si la cible est null
+	 * 						si la cible n'est pas un serviteur
+	 * @see setAttente dans la classe Serviteur
+	 */
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 		if(cible==null)

@@ -1,5 +1,11 @@
 package application;
 
+/**
+ * @authors MICHALON.Claire SCHUTER.Jorane
+ * @version 1.10
+ */
+
+
 import java.util.ArrayList;
 
 import Plateau.IPlateau;
@@ -14,6 +20,7 @@ import cor.InterfaceCharge;
 import cor.InterfaceChasseur;
 import cor.InterfaceExecuterAction;
 import cor.InterfaceFinirTour;
+import cor.InterfaceTest;
 import cor.InterfaceJouerCarteJeu;
 import cor.InterfaceJouerCarteMain;
 import cor.InterfaceJouerSort;
@@ -36,6 +43,11 @@ import capacite.Invocation;
 import capacite.LachezChiens;
 import capacite.Pioche;
 import capacite.Provocation;
+/**
+ * @param j = joueur qui possede les cartes.
+ * @return ArrayList de toutes les cartes 
+ * @see ICarte
+ */
 public class Hearthstone {
 	
 	public static	Interface ihm=null;
@@ -211,7 +223,7 @@ public static String menu(){
 		
 		int n = 0;
 		String s;
-		while(n<5) {
+		while(n<6) {
 				s=menu.get(n);
 				int nb=n+1;
 				es.println(""+nb+". "+s);
@@ -239,7 +251,7 @@ public static String menu(){
 		monInterface=new InterfaceJouerCarteMain(monInterface);
 		monInterface=new InterfaceJouerCarteJeu(monInterface);
 		monInterface=new InterfaceUtiliserPouvoir(monInterface);
-		//monInterface=new InterfaceTest(monInterface);
+		monInterface=new InterfaceTest(monInterface);
 		
 		
 		return monInterface;

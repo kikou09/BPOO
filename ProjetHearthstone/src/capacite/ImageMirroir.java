@@ -1,6 +1,7 @@
 package capacite;
 
 import Plateau.Plateau;
+import application.HearthstoneException;
 import carte.Serviteur;
 import joueur.IJoueur;
 
@@ -13,7 +14,7 @@ public final class ImageMirroir extends ACapacite{
 	}
 
 	@Override
-	public void executerAction(Object cible) {
+	public void executerEffetMiseEnJeu(Object cible) {
 		
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		
@@ -34,8 +35,10 @@ public final class ImageMirroir extends ACapacite{
 	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {}
-
+	public void executerAction(Object cible) throws HearthstoneException {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

@@ -1,6 +1,5 @@
 package joueur;
 import joueur.Joueur;
-import carte.Carte;
 import carte.ICarte;
 
 import java.util.ArrayList;
@@ -84,6 +83,11 @@ public final class Joueur implements IJoueur {
 		return this.pseudo + " [ Heros = " + this.heros +  " \n\t    Stock de mana =" + this.stockMana + "\n";
 	}
 	
+	/**
+	 * Le joueur prend le tour 
+	 * @throws HearthstoneException : si le joueur à deja le tour
+	 */
+	
 	public final void prendreTour() throws HearthstoneException {
 		if(this.joue)
 			throw new HearthstoneException ("Tu as deja le tour ");
@@ -103,9 +107,12 @@ public final class Joueur implements IJoueur {
 		}
 		
 	}
-		
+	
+	/**
+	 * Le joueur finit son tour
+	 * @throws HearhtstoneException : si le joueur n'as pas le tour 
+	 */
 	public final void finirTour () throws HearthstoneException {
-		System.out.println(this.joue);
 		if(!this.joue)
 			throw new HearthstoneException ("Ce n'est pas ton tour ");
 		for(ICarte c : this.cartes_poses)
@@ -137,7 +144,9 @@ public final class Joueur implements IJoueur {
 		return true;
 	}
 	
-	
+	/**
+	 * @throws HearthstoneException: si la pioche est vide
+	 */
 	
 	public final void piocher()  throws HearthstoneException {
 		if(this.deck.size()!=0 )
@@ -149,7 +158,11 @@ public final class Joueur implements IJoueur {
 		}
 	}
 	
-	
+	/**
+	 * @param carte
+	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
+	 * 								si il n'y a pas assez de mana pour invouer cette carte
+	 */
 	public final void jouerCarte(ICarte carte) throws HearthstoneException {
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
@@ -171,6 +184,11 @@ public final class Joueur implements IJoueur {
 		}
 	}
 	
+	/**
+	 * @param carte, cible
+	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
+	 * 								si il n'y a pas assez de mana pour invouer cette carte
+	 */
 	public final void jouerCarte(ICarte carte, Object cible) throws HearthstoneException{
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
@@ -185,6 +203,10 @@ public final class Joueur implements IJoueur {
 		
 	}
 
+	/**
+	 * @param carte
+	 * @throws HearthstoneException: si cette carte n'est pas sur le plateau
+	 */	
 	public final void perdreCarte(ICarte carte) throws HearthstoneException{
 		if (!this.cartes_poses.contains(carte))
 			throw new HearthstoneException("Carte non posees sur le plateau");
@@ -193,9 +215,11 @@ public final class Joueur implements IJoueur {
 		
 	}
 	
-	
+	/**
+	 * @param cible
+	 * @throws HearthstoneException: si le hero n'a pas de pouvoir
+	 */
 	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
-		System.out.println("ok");
 		if(this.heros.getPouvoir()==null)
 			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
 		this.heros.getPouvoir().executerAction(cible);
@@ -228,7 +252,10 @@ public final class Joueur implements IJoueur {
 		
 	}
 
-	@Override
+	/**
+	 * @param carte, cible
+	 * @throws HearthstoneException: si cette carte n'est pas sur le plateau
+	 */
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
 		
 		if (!this.cartes_poses.contains(carte))
@@ -239,5 +266,14 @@ public final class Joueur implements IJoueur {
 		
 	}
 
+	/**
+	 * @param nb
+	 * Uniquement pour les tests
+	 */
+	public void setMana(int nb) {
+		
+		this.mana=nb;
+		this.stockMana=nb;
+	}
 	
 }

@@ -17,7 +17,7 @@ public class AttaqueMassive extends Capacite {
 
 	
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException  {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException  {
 		if(this.utilise) {
 			throw new HearthstoneException ("Sort deja utilise ");
 		}

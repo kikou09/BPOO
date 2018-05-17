@@ -2,12 +2,10 @@ package carte;
 
 import Plateau.Plateau;
 import application.HearthstoneException;
-import capacite.ACapacite;
 import carte.ICarte;
 import capacite.ICapacite;
 import capacite.Provocation;
 import joueur.IJoueur;
-import joueur.Joueur;
 
 public final class Serviteur extends Carte {
 
@@ -51,6 +49,15 @@ public final class Serviteur extends Carte {
 		return attente;
 	}
 
+	/**
+	 * @throws HearthstoneException :
+	 * 						si l'attente est >0 (il ne peut pas attaquer lors de ce tour 
+	 * 						si le serviteur a deja attaqué à ce tour ci
+	 * 						si il tente d'attaquer un serviteur et qu'un autre possède la capacite Provocation
+	 * 						si la cible n'est pas du bon type
+	 * @see peutAttaquer(cible)
+	 * 
+	 */
 	public final void executerAction(Object o) throws HearthstoneException {
 		if (this.attente !=0)
 			throw new HearthstoneException ("Impossible de la jouer a  ce tour ci");
@@ -134,12 +141,16 @@ public final class Serviteur extends Carte {
 		return new Serviteur(this);
 	}
 	
-	@Override
+	/**
+	 * Execute la capacite du serviteur et met l'attente à 1 
+	 * @param cible sur laquelle executer la capacite
+	 */
 	public void executerEffetDebutMiseEnJeu(Object cible) {
 		this.setAttente(1);
 		if(this.capacite != null)
 			try {
-				this.capacite.executerAction(cible);
+				
+				this.capacite.executerEffetMiseEnJeu(cible);
 			}
 			catch(HearthstoneException e) {
 				e.printStackTrace();
@@ -160,7 +171,9 @@ public final class Serviteur extends Carte {
 			this.capacite.executerEffetFinTour();
 	}
 
-	@Override
+	/**
+	 * Execute l'effet de debut de tour de la capacite du serviteur  
+	*/
 	public void executerEffetDebutTour() {
 		this.deja_attaque=false;
 		if(this.attente>0)
@@ -171,7 +184,11 @@ public final class Serviteur extends Carte {
 	}
 
 	
-	//Verifie si la cible peut être attaquer
+	/**
+	 * Verifie si un serviteur adverse en jeu possède la capacite provocation 
+	 * @param cible : serviteur adverse ciblé
+	 * @return boolean : true si le serviteur peut attaquer la cible choisie , false sinon
+	 */
 	public boolean peutAttaquer(Object cible) {
 		if(cible instanceof Serviteur && ((Serviteur)cible).capacite instanceof Provocation)
 			return true;

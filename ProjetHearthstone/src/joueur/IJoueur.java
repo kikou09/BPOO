@@ -29,6 +29,7 @@ public abstract interface IJoueur{
 	public abstract void prendreTour()  throws HearthstoneException ;
 	public abstract void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException;
 	public abstract void utiliserPouvoir(Object cible) throws HearthstoneException ;
+	public abstract void setMana(int i);
 }
 
 

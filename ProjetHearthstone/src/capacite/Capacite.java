@@ -36,7 +36,7 @@ public abstract class Capacite extends ACapacite{
 	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {}
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
 	
 	
 	

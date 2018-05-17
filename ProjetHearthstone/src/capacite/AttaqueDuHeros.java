@@ -14,7 +14,7 @@ public class AttaqueDuHeros extends Capacite {
 		super(n,des,d);
 	}
 	
-	public void executerAction(Object o) throws HearthstoneException {
+	public void executerEffetMiseEnJeu(Object o) throws HearthstoneException {
 			
 		if(this.utilise) {
 			throw new HearthstoneException ("Capacite deja utilise ");

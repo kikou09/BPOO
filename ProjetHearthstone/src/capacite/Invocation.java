@@ -5,6 +5,9 @@ import application.HearthstoneException;
 import carte.Serviteur;
 import joueur.IJoueur;
 
+/**
+ * Invoque un serviteur 
+ */
 public class Invocation extends ACapacite {
 	
 	private Serviteur serviteur_invoque ;
@@ -25,9 +28,6 @@ public class Invocation extends ACapacite {
 	}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {}
-
-	@Override
 	public void executerEffetDebutTour() {}
 
 	@Override
@@ -37,15 +37,20 @@ public class Invocation extends ACapacite {
 	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException { 
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException { 
 		
 		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
 		Serviteur s=(Serviteur)(this.serviteur_invoque.clone());
 		proprietaire.getCartes_Poses().add(s);
-		System.out.println(proprietaire.getCartes_Poses());
 		s.setProprietaire(proprietaire);
 		s.executerEffetDebutMiseEnJeu(null);
 		
+		
+	}
+
+	@Override
+	public void executerAction(Object cible) throws HearthstoneException {
+		// TODO Auto-generated method stub
 		
 	}
 

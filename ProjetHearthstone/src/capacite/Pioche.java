@@ -14,7 +14,7 @@ public final class Pioche extends ACapacite {
 		this.nb_pioche=nb;
 	}
 	
-	public final void executerAction(Object cible) throws HearthstoneException
+	public final void executerEffetMiseEnJeu(Object cible) throws HearthstoneException
 	{
 
 		cible=(IJoueur)Plateau.instancePlateau().getJoueurCourant();
@@ -43,8 +43,9 @@ public final class Pioche extends ACapacite {
 	}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

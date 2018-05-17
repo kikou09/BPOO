@@ -12,7 +12,7 @@ public class Chasseur extends Capacite {
 	}
 	
 	
-public void executerAction(Object cible) throws HearthstoneException {
+public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 		if (cible==null) {
 			throw new HearthstoneException("Marque du chasseur necessite une cible");

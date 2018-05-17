@@ -7,6 +7,11 @@ import carte.ICarte;
 import carte.Serviteur;
 import joueur.IJoueur;
 
+/**
+ * 
+ * Invoque des chiens (serviteurs) qui possèdent la capacité Charge
+ *
+ */
 public class LachezChiens extends Invocation {
 
 	
@@ -17,7 +22,7 @@ public class LachezChiens extends Invocation {
 	
 	
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		IJoueur joueur=Plateau.instancePlateau().getJoueurCourant();
 		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(joueur);
 		

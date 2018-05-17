@@ -15,7 +15,7 @@ public class AttaqueTotale extends Capacite {
 		super(n,des,d);
 	}
 
-	public void executerAction(Object cible) throws HearthstoneException {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 		if(cible==null) {
 			throw new HearthstoneException("Il faut une cible ");
