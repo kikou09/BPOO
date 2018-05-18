@@ -2,6 +2,10 @@ package capacite;
 
 import application.HearthstoneException;
 import carte.Serviteur;
+
+/**
+ * Capacite qui permet a un serviteur de ne pas attendre avant d'attaquer
+ */
 public final class Charge extends ACapacite{
 	
 	public Charge() {
@@ -9,8 +13,7 @@ public final class Charge extends ACapacite{
 		super("Charge", " Permet à un serviteur de ne pas attendre avant d'attaquer");
 	}
 
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException  {
+/*	public void executerAction(Object cible) throws HearthstoneException  {
 		
 		if(cible==null)
 			throw new HearthstoneException("Charge necessite une cible");
@@ -20,24 +23,13 @@ public final class Charge extends ACapacite{
 			
 		((Serviteur)cible).setAttente(0);		
 	}
+*/
+	
+	public void executerEffetDebutTour() {}
 
-	@Override
-	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) {}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
 	
 	/**
 	 * Met l'attente du serviteur cible du joueur courant à 0 (il n'a pas besoin d'attendre avant d'attaquer)
@@ -57,6 +49,12 @@ public final class Charge extends ACapacite{
 			
 		cible=((Serviteur)cible);
 		((Serviteur)cible).setAttente(0);
+		
+	}
+
+	@Override
+	public void executerAction(Object cible) throws HearthstoneException {
+		// TODO Auto-generated method stub
 		
 	}
 

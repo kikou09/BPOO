@@ -1,6 +1,4 @@
 package cor;
-import capacite.Capacite;
-import capacite.Pioche;
 import Plateau.Plateau;
 import application.HearthstoneException;
 

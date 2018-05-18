@@ -1,13 +1,20 @@
 package capacite;
 
+import joueur.IJoueur;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Plateau.Plateau;
-import joueur.IJoueur;
 import application.HearthstoneException;
 import carte.ICarte;
 import carte.Serviteur;
 
+
+/**
+ * Capacite qui attaque simultanément tous les serviteurs adverses 
+ *
+ */
 public class AttaqueTotale extends Capacite {
 	
 	public AttaqueTotale(String n , String des , int d) {
@@ -15,29 +22,28 @@ public class AttaqueTotale extends Capacite {
 		super(n,des,d);
 	}
 
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		
-		if(cible==null) {
-			throw new HearthstoneException("Il faut une cible ");
-		}	
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException  {
 		if(this.utilise) {
 			throw new HearthstoneException ("Capacite deja utilise ");
 		}
 		
-		cible=(IJoueur)cible;
-		//cible=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
+		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
+		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(joueur_courant);
+		ArrayList<ICarte> copie_cartes_poses=(ArrayList<ICarte>) adversaire.getCartes_Poses().clone();
 		
-		
-		for(ICarte c :((IJoueur) cible).getCartes_Poses()){
-		 	if(c instanceof Serviteur){
-		 	
-		 		Serviteur s=((Serviteur)c);
-		 		s.subitAttaque(this.degats);
-		 		if(s.disparait())
-		 			((IJoueur)cible).perdreCarte(s);
-		 		}
-		 	}
-		
+		Iterator<ICarte> c=copie_cartes_poses.iterator();
+		while(c.hasNext()){
+			
+				ICarte element=(ICarte) c.next();
+		  		if(element instanceof Serviteur){
+		  			((Serviteur) element).subitAttaque(this.degats);
+		  			if(((Serviteur) element).disparait()) {
+		  				((IJoueur) adversaire).perdreCarte((Serviteur)element);
+		  			}
+		  		}
+		  }
+		 
 		this.utilise=true;
+				
 	}
 }

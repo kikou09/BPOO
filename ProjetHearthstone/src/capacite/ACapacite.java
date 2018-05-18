@@ -1,7 +1,8 @@
 package capacite;
 
 /**
- * C'est la classe abstraite de base qui va etre etendue par d'autres
+ * C'est la classe abstraite de base des capacites qui va etre etendue par d'autres
+ * Une capacite peut faire differentes choses et toutes les capacites ont leur propre comportement
  */
 
 public abstract class ACapacite implements ICapacite {
@@ -20,16 +21,23 @@ public abstract class ACapacite implements ICapacite {
 		this.utilise=false;
 	}
 	
-	
+	/**
+	 * Le nom de la capacité 
+	 */
 	public String getNom() {
 		return this.nom;
 	}
 	
-	
+	/**
+	 * La description de la capacité
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Le booleen pour savoir si la capacite a deja ete utlisée ou pas
+	 */
 	public boolean getUtilise() {
 		return utilise;
 	}

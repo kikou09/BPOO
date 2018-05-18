@@ -22,7 +22,8 @@ public class InterfaceUtiliserPouvoir extends Interface {
 	@Override
 	public void executerInteraction(Object o) throws HearthstoneException {
 		
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
+		
 		Object cible = null;
 		
 		String chaine="Que vises tu ?";

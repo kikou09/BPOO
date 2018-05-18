@@ -9,17 +9,18 @@ public class InterfaceFinirTour extends Interface {
 		super(suivant);
 	}
 
-	@Override
+	
 	public boolean saitInteragir(Object choix) {
 		if(!(choix instanceof String))
 			return false;
 		return getDescription().equals(choix);
 	}
 
-	@Override
+	
 	public void executerInteraction(Object o) {
 		
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
+		
 		try {
 				Plateau.instancePlateau().getJoueurCourant().finirTour();
 		}
@@ -29,7 +30,7 @@ public class InterfaceFinirTour extends Interface {
 		}
 	}
 
-	@Override
+	
 	public String getDescription() {
 		return "Finir le tour ";
 	}

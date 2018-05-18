@@ -24,7 +24,7 @@ public class InterfaceCharge extends Interface {
 	@Override
 	public void executerInteraction(Object o) throws HearthstoneException {
 
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
 		if(Plateau.instancePlateau().getJoueurCourant().getCartes_Poses().size()==0)
 			throw new HearthstoneException("Vous n'avez aucune carte en jeu");
 		

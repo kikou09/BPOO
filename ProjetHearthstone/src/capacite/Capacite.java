@@ -2,6 +2,11 @@ package capacite;
 
 import application.HearthstoneException;
 
+/**
+ * Classe abstraite qui etend ACapacite 
+ * Certaines capacités infligent des degats 
+ *
+ */
 public abstract class Capacite extends ACapacite{
 	
 	int degats ;
@@ -16,26 +21,29 @@ public abstract class Capacite extends ACapacite{
 		return degats;
 	}
 	
-	public void dejaUtilise() {
-		this.utilise=true;
-	}
-
-	@Override
+	/**
+	 * Certaines capacité agissent quand on le demande, et éventuellement sur une cible...
+	 */
 	public void executerAction(Object cible) throws HearthstoneException {}
 
-	@Override
-	public void executerEffetDebutTour() {
-		this.utilise=false;
-		
-	}
+	/**
+	 * Certaines capacité agissent en début de tour 
+	 */
+	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {}
+	/**
+	 * Certaines capacité agissent lorsque la carte disparaît du jeu
+	 */
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 
-	@Override
-	public void executerEffetFinTour() {}
+	/**
+	 * Certaines capacité agissent en fin de tour
+	 */
+	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
+	/**
+	 * Certaines capacité agissent en début de mise en jeu
+	 */
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
 	
 	

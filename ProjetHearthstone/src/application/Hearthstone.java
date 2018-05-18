@@ -1,7 +1,7 @@
 package application;
 
 /**
- * @authors MICHALON.Claire SCHUTER.Jorane
+ * @authors SCHUSTER Jorane MICHALON.Claire 
  * @version 1.10
  */
 
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import Plateau.IPlateau;
 import Plateau.Plateau;
-import carte.Carte;
 import carte.ICarte;
 import carte.Serviteur;
 import carte.Sort;
@@ -29,12 +28,9 @@ import cor.InterfaceUtiliserPouvoir;
 import joueur.IJoueur;
 import joueur.Joueur;
 import heros.Heros;
-import capacite.ICapacite;
 import capacite.AttaqueCiblee;
 import capacite.AttaqueDuHeros;
-import capacite.AttaqueMassive;
 import capacite.AttaqueTotale;
-import capacite.Capacite;
 import capacite.Charge;
 import capacite.Chasseur;
 import capacite.EffetPermanent;
@@ -56,7 +52,7 @@ public class Hearthstone {
 	public static ArrayList<ICarte> CreerCartesJaina(IJoueur j)
 	{
 		ArrayList<ICarte> cartesJaina = new ArrayList<ICarte> ();
-		ICarte flamme =new Sort("Choc de Flamme ", 7 , j ,new AttaqueMassive("Attaque massive","inflige 4 pts de dégats a tous les serviteurs adverses ", 4));
+		ICarte flamme =new Sort("Choc de Flamme ", 7 , j ,new AttaqueTotale("Attaque massive","inflige 4 pts de dégats a tous les serviteurs adverses ", 4));
 		cartesJaina.add(flamme);
 		ICarte givre = new Sort ("Eclair de givre", 2, j, new AttaqueCiblee("Attaque de givre", "inflige 3 pts de dégats au personnages cible", 3));
 		cartesJaina.add(givre);

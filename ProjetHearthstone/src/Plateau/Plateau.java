@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import Plateau.IPlateau;
 import application.HearthstoneException;
 import joueur.IJoueur;
-import joueur.Joueur;
 import carte.ICarte;
 
 public final class Plateau implements IPlateau {
@@ -22,7 +21,7 @@ public final class Plateau implements IPlateau {
 		
 	}
 	
-	private Plateau()   //Constructeur
+	private Plateau() 
 	{
 		this.joueurCourant=null;
 		this.demarree=false;
@@ -168,7 +167,7 @@ public final class Plateau implements IPlateau {
 	
 	public final void gagnePartie (IJoueur joueur) throws HearthstoneException {
 		this.demarree=false;
-		String msg=this.instancePlateau().getAdversaire(joueur).getPseudo() + "Pour arrêter de perdre il faut arrêter de jouer ! ";
+		String msg=Plateau.instancePlateau().getAdversaire(joueur).getPseudo() + "Pour arrêter de perdre il faut arrêter de jouer ! ";
 		msg+="**** "+ joueur.getPseudo() + " a gagne ! ****";
 		
 		

@@ -23,7 +23,8 @@ public class InterfaceExecuterAction extends Interface {
 	@Override
 	public void executerInteraction(Object o) throws HearthstoneException {
 		
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
+		
 		String chaine="Que vises tu ?\n ";
 		chaine+="1.Le héros\n";
 		chaine+="2.Une autre carte";

@@ -1,8 +1,10 @@
 package carte ;
 import joueur.IJoueur;
-import joueur.Joueur;
 
-
+/**
+ * Classe qui implémente l'interface ICarte
+ *
+ */
 public abstract class Carte implements ICarte{
 
 	private String nom;

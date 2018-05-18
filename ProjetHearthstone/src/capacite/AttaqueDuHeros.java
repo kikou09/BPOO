@@ -3,10 +3,13 @@ package capacite;
 import Plateau.IPlateau;
 import Plateau.Plateau;
 import application.HearthstoneException;
-import carte.Serviteur;
-import heros.Heros;
 import joueur.IJoueur;
-import joueur.Joueur;
+
+/**
+ * Capacite qui permet d'attaquer le héros en toutes circonstances même si le héros 
+ * est protégé par la provocation
+ *
+ */
 public class AttaqueDuHeros extends Capacite {
 	
 	public AttaqueDuHeros(String n , String des , int d) {

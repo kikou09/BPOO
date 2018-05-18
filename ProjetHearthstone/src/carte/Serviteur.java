@@ -50,6 +50,7 @@ public final class Serviteur extends Carte {
 	}
 
 	/**
+	 * Un serviteur peut avoir une action qui se commande à n'importe quel moment du tour lorsqu'elle est en jeu
 	 * @throws HearthstoneException :
 	 * 						si l'attente est >0 (il ne peut pas attaquer lors de ce tour 
 	 * 						si le serviteur a deja attaqué à ce tour ci
@@ -97,6 +98,9 @@ public final class Serviteur extends Carte {
 		
 	}
 	
+	/**
+	 * Fonction qui teste si les conditions pour que le serviteur soit encore présente au tour suivant.
+	 */
 	public final boolean disparait()
 	{
 		return this.point_vie <= 0;
@@ -142,6 +146,7 @@ public final class Serviteur extends Carte {
 	}
 	
 	/**
+	 * Un serviteur peut avoir un effet au début de sa mise en jeu
 	 * Execute la capacite du serviteur et met l'attente à 1 
 	 * @param cible sur laquelle executer la capacite
 	 */
@@ -158,23 +163,29 @@ public final class Serviteur extends Carte {
 		
 	}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {
+	
+	/**
+	 * Un serviteur peut avoir un effet au moment de sa disparition du jeu
+	 */
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 		if(this.capacite!=null)
 			this.capacite.executerEffetDisparition(cible);
 		
 	}
 
-	@Override
-	public void executerEffetFinTour() {
+	/**
+	 * Un serviteur peut avoir un effet à la fin d'un chaque tour où elle est en jeu
+	 */
+	public void executerEffetFinTour() throws HearthstoneException {
 		if(this.capacite!=null)
 			this.capacite.executerEffetFinTour();
 	}
 
 	/**
 	 * Execute l'effet de debut de tour de la capacite du serviteur  
+	 * @throws HearthstoneException 
 	*/
-	public void executerEffetDebutTour() {
+	public void executerEffetDebutTour() throws HearthstoneException {
 		this.deja_attaque=false;
 		if(this.attente>0)
 			this.attente--;

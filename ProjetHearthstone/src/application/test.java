@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 import Plateau.Plateau;
 import capacite.AttaqueCiblee;
-import capacite.AttaqueMassive;
 import capacite.Pioche;
-import capacite.Provocation;
 import carte.ICarte;
 import carte.Serviteur;
-import carte.Sort;
 import heros.Heros;
 import joueur.IJoueur;
 import joueur.Joueur;

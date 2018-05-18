@@ -2,13 +2,12 @@ package capacite;
 
 import Plateau.Plateau;
 import application.HearthstoneException;
-import carte.Carte;
 import carte.ICarte;
 import carte.Serviteur;
 import joueur.IJoueur;
 
 /**
- * 
+ * Capacite propre a Rexxar
  * Invoque des chiens (serviteurs) qui possèdent la capacité Charge
  *
  */

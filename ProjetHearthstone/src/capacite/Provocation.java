@@ -1,5 +1,8 @@
 package capacite;
 
+/**
+ * Oblige l'adversaire à viser ce serviteur
+ */
 public class Provocation extends ACapacite {
 	
 	public Provocation(){
@@ -7,33 +10,15 @@ public class Provocation extends ACapacite {
 		super("Provocation", "Oblige l'adversaire à viser le serviteur qui detient cette capacite");
 	}
 
-	@Override
-	public void executerAction(Object cible) {
-		return;
-	}
+	
+	public void executerAction(Object cible) {}
 
-	@Override
-	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDebutTour() {}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) {}
 
-	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() {}
 
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetMiseEnJeu(Object cible) {}
 
 }

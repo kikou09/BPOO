@@ -20,7 +20,8 @@ public class InterfaceJouerCarteJeu extends Interface {
 	@Override
 	public void executerInteraction(Object o) throws HearthstoneException{
 		
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
+		
 		String chaine="Quelle carte veut tu jouer ?";
 		es.println(chaine);
 		

@@ -6,7 +6,7 @@ import carte.Serviteur;
 import joueur.IJoueur;
 
 /**
- * Invoque un serviteur 
+ * Invoque un serviteur au moment de sa mise en jeu
  */
 public class Invocation extends ACapacite {
 	

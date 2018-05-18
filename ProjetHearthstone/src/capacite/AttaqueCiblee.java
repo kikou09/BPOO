@@ -3,14 +3,17 @@ package capacite;
 import java.lang.String;
 import java.lang.Object;
 import joueur.IJoueur;
-import joueur.Joueur;
 import Plateau.Plateau;
 import application.HearthstoneException;
 import carte.Carte;
 import carte.ICarte;
 import carte.Serviteur;
 
-
+/**
+ * Capacite qui attaque une cible , soit le héros , soit l'un des serviteurs . Capacite
+ * sensible a la provocation
+ *
+ */
 public class AttaqueCiblee extends Capacite {
 	
 	public AttaqueCiblee(String n , String des , int d) {

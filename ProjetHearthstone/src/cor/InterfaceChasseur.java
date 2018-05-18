@@ -23,8 +23,9 @@ public class InterfaceChasseur extends Interface {
 
 	@Override
 	public void executerInteraction(Object o) throws HearthstoneException {
-		Console es=new Console();
-		
+
+		Console es=application.Hearthstone.es;
+
 		if(Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant()).getCartes_Poses().size()==0)
 			throw new HearthstoneException("L'adversaire n'a pas de carte en jeu");
 		

@@ -3,7 +3,6 @@ package joueur;
 import java.util.ArrayList;
 
 import application.HearthstoneException;
-import carte.Carte;
 import carte.ICarte;
 
 public abstract interface IJoueur{

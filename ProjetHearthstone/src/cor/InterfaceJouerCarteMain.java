@@ -17,7 +17,8 @@ public class InterfaceJouerCarteMain extends Interface {
 
 	@Override
 	public void executerInteraction(Object o) {
-		Console es=new Console();
+		Console es=application.Hearthstone.es;
+		
 		String chaine="Quelle carte veut tu jouer ?";
 		es.println(chaine);
 		

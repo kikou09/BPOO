@@ -5,6 +5,9 @@ import Plateau.Plateau;
 import application.HearthstoneException;
 import joueur.IJoueur;
 
+/**
+ * Permet de piocher une ou plusieurs cartes 
+ */
 public final class Pioche extends ACapacite {
 	
 	private int nb_pioche ;
@@ -24,28 +27,12 @@ public final class Pioche extends ACapacite {
 		}
 	}
 
-	@Override
-	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 
-	@Override
-	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerAction(Object cible) throws HearthstoneException {}
 
 }

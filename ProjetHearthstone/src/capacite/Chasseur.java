@@ -3,6 +3,9 @@ package capacite;
 import application.HearthstoneException;
 import carte.Serviteur;
 
+/**
+ * Capacite qui reduit le nombre de points de vie d'un serviteur
+ */
 public class Chasseur extends Capacite {
 	
 	public Chasseur() {

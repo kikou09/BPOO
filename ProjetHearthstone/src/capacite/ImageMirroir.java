@@ -5,6 +5,11 @@ import application.HearthstoneException;
 import carte.Serviteur;
 import joueur.IJoueur;
 
+/**
+ * Capacite propre a Jaina . Invoque au debut du tour deux serviteurs 0/2 avec provocation .
+ * @author Jorane
+ *
+ */
 public final class ImageMirroir extends ACapacite{
 	
 	public ImageMirroir(){
@@ -13,8 +18,7 @@ public final class ImageMirroir extends ACapacite{
 		
 	}
 
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		
@@ -25,20 +29,13 @@ public final class ImageMirroir extends ACapacite{
 		joueur_courant.getCartes_Poses().add(s_invoque2);
 	}
 
-	@Override
 	public void executerEffetDebutTour() {}
 
-	@Override
-	public void executerEffetDisparition(Object cible) {}
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 
-	@Override
-	public void executerEffetFinTour() {}
+	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void executerAction(Object cible) throws HearthstoneException {}
 
 
 }

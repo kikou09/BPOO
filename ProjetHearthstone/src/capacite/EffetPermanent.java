@@ -5,7 +5,7 @@ import carte.ICarte;
 import carte.Serviteur;
 import joueur.IJoueur;
 /** 
- * l'activation de cette capacité  gener un bonus (points de vie et d'attaque),
+ * l'activation de cette capacité  generer un bonus (points de vie et d'attaque),
  *  qui est effective sur les serviteurs deja presents sur le plateau.
  *  Les bonus restent meme apres le mort du serviteur qui possede cette capacité.
  */
@@ -21,19 +21,10 @@ public class EffetPermanent extends ACapacite {
 	}
 
 
+	public void executerAction(Object cible) {}
 
-	@Override
-	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void executerEffetDebutTour() {
-
-	}
+	public void executerEffetDebutTour() {}
 	
-	@Override
 	public void executerEffetDisparition(Object cible) {
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		
@@ -46,12 +37,8 @@ public class EffetPermanent extends ACapacite {
 		 }
 	}
 
-	public void executerEffetFinTour() {
-		
-		
-	}
+	public void executerEffetFinTour() {}
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
 		IJoueur joueur_courant=Plateau.instancePlateau().getJoueurCourant();
 		for(ICarte c : joueur_courant.getCartes_Poses())
