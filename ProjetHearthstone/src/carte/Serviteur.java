@@ -1,6 +1,7 @@
 package carte;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 import capacite.ICapacite;
@@ -149,15 +150,17 @@ public final class Serviteur extends Carte {
 	 * Un serviteur peut avoir un effet au début de sa mise en jeu
 	 * Execute la capacite du serviteur et met l'attente à 1 
 	 * @param cible sur laquelle executer la capacite
+	 * @throws HearthstoneCapaciteException 
+	 * @throws HearthstoneException 
 	 */
-	public void executerEffetDebutMiseEnJeu(Object cible) {
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneCapaciteException, HearthstoneException {
 		this.setAttente(1);
 		if(this.capacite != null)
 			try {
 				
 				this.capacite.executerEffetMiseEnJeu(cible);
 			}
-			catch(HearthstoneException e) {
+			catch(HearthstoneCapaciteException e) {
 				e.printStackTrace();
 			}
 		

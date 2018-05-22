@@ -1,5 +1,6 @@
 package capacite ;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 
 /**
@@ -12,7 +13,7 @@ public abstract interface ICapacite{
 	public abstract void executerEffetDebutTour() throws HearthstoneException ; 
 	public abstract void executerEffetDisparition(Object cible) throws HearthstoneException; 
 	public abstract void executerEffetFinTour() throws HearthstoneException ; 
-	public abstract void executerEffetMiseEnJeu(Object cible) throws HearthstoneException;
+	public abstract void executerEffetMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException;
 	public abstract String getDescription();
 	public abstract String getNom();
 

@@ -4,6 +4,7 @@ import java.lang.String;
 import java.lang.Object;
 import joueur.IJoueur;
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.Carte;
 import carte.ICarte;
@@ -29,12 +30,13 @@ public class AttaqueCiblee extends Capacite {
 	 * 								  si la capacité mise en jeu est deja utilisée, 
 	 * 								  si la cible n'est pas du bon type,
 	 * 								  si un serviteur adverse a la capacité "provocation".
+	 * @throws HearthstoneCapaciteException 
 	 * @see getServiteurProvocation
 	 */
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException {
 		
 		if(cible==null) {
-			throw new HearthstoneException("Il faut une cible ");
+			throw new HearthstoneCapaciteException("Il faut une cible ");
 		}	
 		if(this.utilise) {
 			throw new HearthstoneException("Capacite deja utilise ");

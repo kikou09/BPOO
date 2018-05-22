@@ -1,6 +1,7 @@
 package cor;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 
@@ -16,7 +17,7 @@ public class InterfaceJouerCarteMain extends Interface {
 	}
 
 	@Override
-	public void executerInteraction(Object o) {
+	public void executerInteraction(Object o) throws HearthstoneException, HearthstoneCapaciteException {
 		Console es=application.Hearthstone.es;
 		
 		String chaine="Quelle carte veut tu jouer ?";
@@ -24,10 +25,10 @@ public class InterfaceJouerCarteMain extends Interface {
 		
 		String choix_carte=es.readLine();
 		
-		try {
-			ICarte carte=Plateau.instancePlateau().getJoueurCourant().getCarteEnMain(choix_carte);
-			if(carte==null)
-				throw new HearthstoneException("Cette carte n'est pas dans ta main");
+		ICarte carte=Plateau.instancePlateau().getJoueurCourant().getCarteEnMain(choix_carte);
+		if(carte==null)
+			
+			throw new HearthstoneException("Cette carte n'est pas dans ta main");
 			
 			//Essaie sans cible
 			try{
@@ -35,24 +36,26 @@ public class InterfaceJouerCarteMain extends Interface {
 				Plateau.instancePlateau().getJoueurCourant().jouerCarte(carte);
 			}
 			
-			//Capacite qui necessite une cible
-			catch(HearthstoneException e) {
+			catch(HearthstoneException e1) {
 				
-				es.println(e.getMessage());
+		
+				es.println(e1.getMessage());
+			}
+		
+			//Capacite qui necessite une cible		
+			catch(HearthstoneCapaciteException e1) {
+				
+				es.println(e1.getMessage());
+				
+				
 				try {
 					application.Hearthstone.ihm.interagir(carte, carte);
 				}
-				catch(Exception e1) {
+				catch(Exception e2) {
 					
-					es.println(e1.getMessage());
+					es.println(e2.getMessage());
 				}
 			}
-		}
-		catch(HearthstoneException e) {
-			
-			es.println(e.getMessage());
-		}
-
 	}
 
 	@Override

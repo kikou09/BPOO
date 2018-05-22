@@ -1,6 +1,7 @@
 package cor;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 import carte.Serviteur;
@@ -20,7 +21,7 @@ public class InterfaceJouerSort extends Interface {
 	}
 
 	@Override
-	public void executerInteraction(Object o) throws HearthstoneException {
+	public void executerInteraction(Object o) throws HearthstoneException, HearthstoneCapaciteException {
 		
 		Console es=application.Hearthstone.es;
 		

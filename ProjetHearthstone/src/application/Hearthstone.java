@@ -238,10 +238,10 @@ public static String menu(){
 	public static Interface initialiserInterface() {
 		
 		Interface monInterface=null;
-		monInterface=new InterfaceJouerSort(monInterface);
 		monInterface=new InterfaceCharge(monInterface);
+		//monInterface=new InterfaceExecuterAction(monInterface);
+		monInterface=new InterfaceJouerSort(monInterface);
 		monInterface= new InterfaceChasseur(monInterface);
-		monInterface=new InterfaceExecuterAction(monInterface);
 		monInterface=new InterfaceQuitter(monInterface);
 		monInterface=new InterfaceFinirTour(monInterface);
 		monInterface=new InterfaceJouerCarteMain(monInterface);

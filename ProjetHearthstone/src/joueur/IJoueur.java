@@ -2,6 +2,7 @@ package joueur;
 
 import java.util.ArrayList;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 
@@ -21,8 +22,8 @@ public abstract interface IJoueur{
 	public abstract int getMana();
 	public abstract String getPseudo();
 	public abstract int getStockMana();
-	public abstract void jouerCarte(ICarte carte) throws HearthstoneException ;
-	public abstract void jouerCarte(ICarte carte, Object cible) throws HearthstoneException;
+	public abstract void jouerCarte(ICarte carte) throws HearthstoneException , HearthstoneCapaciteException ;
+	public abstract void jouerCarte(ICarte carte, Object cible) throws HearthstoneException, HearthstoneCapaciteException;
 	public abstract void perdreCarte(ICarte carte) throws HearthstoneException ;
 	public abstract void piocher() throws HearthstoneException ;
 	public abstract void prendreTour()  throws HearthstoneException ;

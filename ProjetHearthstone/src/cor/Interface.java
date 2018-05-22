@@ -1,5 +1,6 @@
 package cor;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 
 public abstract class Interface {
@@ -16,7 +17,7 @@ public abstract class Interface {
 	}
 	
 	public abstract boolean saitInteragir(Object choix);
-	public abstract void executerInteraction(Object o) throws HearthstoneException;
+	public abstract void executerInteraction(Object o) throws HearthstoneException, HearthstoneCapaciteException;
 	public abstract String getDescription();
 	
 	public void interagir(Object choix , Object o) throws Exception{

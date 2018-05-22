@@ -1,5 +1,6 @@
 package carte;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import capacite.ICapacite;
 import joueur.IJoueur;
@@ -13,7 +14,7 @@ public abstract interface ICarte extends Cloneable{
 
 	public abstract boolean	disparait();
 	public abstract void executerAction(Object cible) throws HearthstoneException;
-	public abstract void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException;
+	public abstract void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException;
 	public abstract void executerEffetDebutTour() throws HearthstoneException ; 
 	public abstract void executerEffetDisparition(Object cible) throws HearthstoneException ; 
 	public abstract void executerEffetFinTour() throws HearthstoneException ; 

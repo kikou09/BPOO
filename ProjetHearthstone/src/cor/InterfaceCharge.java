@@ -1,6 +1,7 @@
 package cor;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import capacite.Charge;
 import carte.ICarte;
@@ -22,7 +23,7 @@ public class InterfaceCharge extends Interface {
 	}
 
 	@Override
-	public void executerInteraction(Object o) throws HearthstoneException {
+	public void executerInteraction(Object o) throws HearthstoneException, HearthstoneCapaciteException {
 
 		Console es=application.Hearthstone.es;
 		if(Plateau.instancePlateau().getJoueurCourant().getCartes_Poses().size()==0)

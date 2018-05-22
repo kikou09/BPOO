@@ -1,5 +1,6 @@
 package capacite;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.Serviteur;
 
@@ -39,10 +40,10 @@ public final class Charge extends ACapacite{
 	 * 						si la cible n'est pas un serviteur
 	 * @see setAttente dans la classe Serviteur
 	 */
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException , HearthstoneCapaciteException {
 		
 		if(cible==null)
-			throw new HearthstoneException("Charge necessite une cible");
+			throw new HearthstoneCapaciteException("Charge necessite une cible");
 			
 		if(!(cible instanceof Serviteur))
 			throw new HearthstoneException("La cible doit être un serviteur");

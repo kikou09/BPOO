@@ -1,6 +1,7 @@
 package capacite;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.Serviteur;
 import joueur.IJoueur;
@@ -37,7 +38,7 @@ public class Invocation extends ACapacite {
 	public void executerEffetFinTour() {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException { 
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException { 
 		
 		IJoueur proprietaire=Plateau.instancePlateau().getJoueurCourant();
 		Serviteur s=(Serviteur)(this.serviteur_invoque.clone());

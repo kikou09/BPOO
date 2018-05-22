@@ -1,6 +1,7 @@
 package carte;
 
 import joueur.IJoueur;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import capacite.ICapacite;
 
@@ -26,7 +27,8 @@ public final class Sort extends Carte {
 	public void executerAction(Object cible) throws HearthstoneException {}
 
 	
-	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException {
+		
 		
 			this.capacite.executerEffetMiseEnJeu(cible);
 			super.getProprietaire().perdreCarte(this);	

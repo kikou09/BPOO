@@ -13,7 +13,7 @@ import joueur.Joueur;
 
 public class test {
 	
-public static void main(String[] args) throws HearthstoneException {
+public static void main(String[] args) throws HearthstoneException, HearthstoneCapaciteException {
 		
 		
 		/*Premier joueur avec le heros Rexxar*/

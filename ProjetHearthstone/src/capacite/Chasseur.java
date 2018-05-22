@@ -1,5 +1,6 @@
 package capacite;
 
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.Serviteur;
 
@@ -15,10 +16,10 @@ public class Chasseur extends Capacite {
 	}
 	
 	
-public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException ,HearthstoneCapaciteException {
 		
 		if (cible==null) {
-			throw new HearthstoneException("Marque du chasseur necessite une cible");
+			throw new  HearthstoneCapaciteException("Marque du chasseur necessite une cible");
 		}
 		
 		if (this.utilise) {

@@ -5,6 +5,7 @@ import carte.ICarte;
 import java.util.ArrayList;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import heros.Heros;
 
@@ -163,11 +164,13 @@ public final class Joueur implements IJoueur {
 	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
 	 * 								si il n'y a pas assez de mana pour invouer cette carte
 	 */
-	public final void jouerCarte(ICarte carte) throws HearthstoneException {
+	public final void jouerCarte(ICarte carte) throws HearthstoneException , HearthstoneCapaciteException {
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
-		if(mana<carte.getMana())
+		if(mana<carte.getMana()) {
+			
 			throw new HearthstoneException("Tu n'as pas assez de mana");
+		}
 		this.mana=this.mana - carte.getMana();
 		this.main.remove(carte);
 		this.cartes_poses.add(carte);
@@ -175,12 +178,12 @@ public final class Joueur implements IJoueur {
 			
 			carte.executerEffetDebutMiseEnJeu(null);
 		}
-		catch(HearthstoneException e) {
+		catch(HearthstoneCapaciteException e) {
 			
 			this.mana=this.mana + carte.getMana();
 			this.main.add(carte);
 			this.cartes_poses.remove(carte);
-			throw new HearthstoneException (e.getMessage());
+			throw new HearthstoneCapaciteException (e.getMessage());
 		}
 	}
 	
@@ -189,7 +192,7 @@ public final class Joueur implements IJoueur {
 	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
 	 * 								si il n'y a pas assez de mana pour invouer cette carte
 	 */
-	public final void jouerCarte(ICarte carte, Object cible) throws HearthstoneException{
+	public final void jouerCarte(ICarte carte, Object cible) throws HearthstoneException , HearthstoneCapaciteException{
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
 		if(mana<carte.getMana())
