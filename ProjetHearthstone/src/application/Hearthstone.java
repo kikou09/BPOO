@@ -17,7 +17,6 @@ import cor.Console;
 import cor.Interface;
 import cor.InterfaceCharge;
 import cor.InterfaceChasseur;
-import cor.InterfaceExecuterAction;
 import cor.InterfaceFinirTour;
 import cor.InterfaceTest;
 import cor.InterfaceJouerCarteJeu;
@@ -239,7 +238,6 @@ public static String menu(){
 		
 		Interface monInterface=null;
 		monInterface=new InterfaceCharge(monInterface);
-		//monInterface=new InterfaceExecuterAction(monInterface);
 		monInterface=new InterfaceJouerSort(monInterface);
 		monInterface= new InterfaceChasseur(monInterface);
 		monInterface=new InterfaceQuitter(monInterface);

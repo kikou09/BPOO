@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import capacite.ICapacite;
 import carte.ICarte;
 
+
+/**
+ * Tout joueur possède un héros qui le representera lors du joueur
+ * Si le Heros meurt , le joueur perd
+ * @author Jorane SCHUSTER , Claire MICHALON
+ *
+ */
 public final class Heros implements Cloneable{
 
 	private String nom ;
@@ -48,22 +55,44 @@ public final class Heros implements Cloneable{
 		this.cartes=h.cartes;
 	}
 	
+	
+	/**
+	 * Getter pour le nom du Heros
+	 * @return chaine de caractères
+	 */
 	public String getNom (){
 		return this.nom;
 	}
 	
+	/**
+	 * Getter pour le pouvoir du heros
+	 * @return capacite
+	 */
 	public ICapacite getPouvoir () {
 		return this.pouvoir;
 	}
 	
+	/**
+	 * Getter pour les points de vies du heros
+	 * @return entier
+	 */
 	public int getPointsDeVie () {
 		return this.pt_vie;
 	}
 	
+	
+	/**
+	 * Le héros perd des points de vies 
+	 * @param nb de points de vies qu'il perd
+	 */
 	public void perteVie(int nb){
 		this.pt_vie=this.pt_vie - nb;
 	}
 	
+	
+	/**
+	 * @return vrai si le héros est mort
+	 */
 	public boolean estMort(){
 		return this.pt_vie <= 0;
 	}
@@ -82,11 +111,21 @@ public final class Heros implements Cloneable{
 	}
 	
 
+	/**
+	 * Getter pour les cartes appartenant au heros
+	 * @return ArrayList de cartes
+	 */
 	public ArrayList<ICarte> getCartes() {
 		return cartes;
 	}
 
+	/**
+	 * Setter pour les cartes du heros
+	 * @param cartes
+	 */
 	public void setCartes(ArrayList<ICarte> cartes) {
+		if(cartes==null)
+			throw new IllegalArgumentException("Les cartes ne doivent pas être nulles");
 		this.cartes = cartes;
 	}
 

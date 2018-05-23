@@ -44,7 +44,6 @@ public abstract class Capacite extends ACapacite{
 
 	/**
 	 * Certaines capacité agissent en début de mise en jeu
-	 * @throws HearthstoneCapaciteException 
 	 */
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException {}
 	

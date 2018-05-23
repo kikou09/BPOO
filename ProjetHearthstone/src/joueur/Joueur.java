@@ -84,10 +84,6 @@ public final class Joueur implements IJoueur {
 		return this.pseudo + " [ Heros = " + this.heros +  " \n\t    Stock de mana =" + this.stockMana + "\n";
 	}
 	
-	/**
-	 * Le joueur prend le tour 
-	 * @throws HearthstoneException : si le joueur à deja le tour
-	 */
 	
 	public final void prendreTour() throws HearthstoneException {
 		if(this.joue)
@@ -109,10 +105,6 @@ public final class Joueur implements IJoueur {
 		
 	}
 	
-	/**
-	 * Le joueur finit son tour
-	 * @throws HearhtstoneException : si le joueur n'as pas le tour 
-	 */
 	public final void finirTour () throws HearthstoneException {
 		if(!this.joue)
 			throw new HearthstoneException ("Ce n'est pas ton tour ");
@@ -145,9 +137,6 @@ public final class Joueur implements IJoueur {
 		return true;
 	}
 	
-	/**
-	 * @throws HearthstoneException: si la pioche est vide
-	 */
 	
 	public final void piocher()  throws HearthstoneException {
 		if(this.deck.size()!=0 )
@@ -157,21 +146,19 @@ public final class Joueur implements IJoueur {
 			this.main.add(carte_p);
 			this.deck.remove(i);
 		}
+		else
+			throw new HearthstoneException("Le deck est vide");
 	}
 	
-	/**
-	 * @param carte
-	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
-	 * 								si il n'y a pas assez de mana pour invouer cette carte
-	 */
+
 	public final void jouerCarte(ICarte carte) throws HearthstoneException , HearthstoneCapaciteException {
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
-		if(mana<carte.getMana()) {
+		if(mana<carte.getCout()) {
 			
 			throw new HearthstoneException("Tu n'as pas assez de mana");
 		}
-		this.mana=this.mana - carte.getMana();
+		this.mana=this.mana - carte.getCout();
 		this.main.remove(carte);
 		this.cartes_poses.add(carte);
 		try {
@@ -180,24 +167,19 @@ public final class Joueur implements IJoueur {
 		}
 		catch(HearthstoneCapaciteException e) {
 			
-			this.mana=this.mana + carte.getMana();
+			this.mana=this.mana + carte.getCout();
 			this.main.add(carte);
 			this.cartes_poses.remove(carte);
 			throw new HearthstoneCapaciteException (e.getMessage());
 		}
 	}
 	
-	/**
-	 * @param carte, cible
-	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
-	 * 								si il n'y a pas assez de mana pour invouer cette carte
-	 */
 	public final void jouerCarte(ICarte carte, Object cible) throws HearthstoneException , HearthstoneCapaciteException{
 		if (!this.main.contains(carte))
 			throw new HearthstoneException("Tu n'as pas cette carte dans ta main ! ");
-		if(mana<carte.getMana())
+		if(mana<carte.getCout())
 			throw new HearthstoneException("Tu n'as pas assez de mana");
-		this.mana=this.mana - carte.getMana();
+		this.mana=this.mana - carte.getCout();
 		this.main.remove(carte);
 		this.cartes_poses.add(carte);
 		
@@ -206,10 +188,6 @@ public final class Joueur implements IJoueur {
 		
 	}
 
-	/**
-	 * @param carte
-	 * @throws HearthstoneException: si cette carte n'est pas sur le plateau
-	 */	
 	public final void perdreCarte(ICarte carte) throws HearthstoneException{
 		if (!this.cartes_poses.contains(carte))
 			throw new HearthstoneException("Carte non posees sur le plateau");
@@ -217,11 +195,7 @@ public final class Joueur implements IJoueur {
 		this.cartes_poses.remove(carte);
 		
 	}
-	
-	/**
-	 * @param cible
-	 * @throws HearthstoneException: si le hero n'a pas de pouvoir
-	 */
+
 	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
 		if(this.heros.getPouvoir()==null)
 			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
@@ -255,10 +229,6 @@ public final class Joueur implements IJoueur {
 		
 	}
 
-	/**
-	 * @param carte, cible
-	 * @throws HearthstoneException: si cette carte n'est pas sur le plateau
-	 */
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
 		
 		if (!this.cartes_poses.contains(carte))
@@ -269,10 +239,6 @@ public final class Joueur implements IJoueur {
 		
 	}
 
-	/**
-	 * @param nb
-	 * Uniquement pour les tests
-	 */
 	public void setMana(int nb) {
 		
 		this.mana=nb;

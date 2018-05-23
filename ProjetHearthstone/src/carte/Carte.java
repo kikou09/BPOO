@@ -28,11 +28,7 @@ public abstract class Carte implements ICarte{
 	public final String getNom(){
 		return this.nom;
 	}
-	
-	public final int getMana(){
-		return this.cout_mana;
-	}
-	
+		
 	public final IJoueur getProprietaire(){
 		return this.proprietaire;
 	}

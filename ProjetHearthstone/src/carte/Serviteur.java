@@ -8,6 +8,12 @@ import capacite.ICapacite;
 import capacite.Provocation;
 import joueur.IJoueur;
 
+/**
+ * Un serviteur possède une capacite , qui est executé au moment de la mise en jeu
+ * il doit attendre un tour avant de pouvoir attaquer 
+ * @author Jorane SCHUSTER , Claire MICHALON
+ *
+ */
 public final class Serviteur extends Carte {
 
 	private int point_attaque;
@@ -34,18 +40,35 @@ public final class Serviteur extends Carte {
 		this.capacite=s.getCapacite();
 	}
 	
+	/**
+	 * Getter pour la capacite du serviteur
+	 * @return capacite
+	 */
 	public ICapacite getCapacite() {
 		return this.capacite;
 	}
 
+	/**
+	 * Getter pour les points d'attaques
+	 * @return un entier
+	 */
 	public int getAttaque(){
 		return this.point_attaque;
 	}
 	
+	
+	/**
+	 * Getter pour les points de vies
+	 * @return un entier
+	 */
 	public int getVie(){
 		return this.point_vie;
 	}
 	
+	/**
+	 * Getter pour le nombre de tour a attendre avant de pouvoir attaquer
+	 * @return un entier
+	 */
 	public int getAttente() {
 		return attente;
 	}
@@ -99,9 +122,7 @@ public final class Serviteur extends Carte {
 		
 	}
 	
-	/**
-	 * Fonction qui teste si les conditions pour que le serviteur soit encore présente au tour suivant.
-	 */
+
 	public final boolean disparait()
 	{
 		return this.point_vie <= 0;
@@ -119,6 +140,10 @@ public final class Serviteur extends Carte {
 		return chaine;
 	}
 	
+	/**
+	 * Le serviteur subit une attaque et ses points de vies diminuent en fonction de degat
+	 * @param degat
+	 */
 	public final void subitAttaque ( int degat )
 	{
 		if(this.point_vie - degat >0)
@@ -127,16 +152,30 @@ public final class Serviteur extends Carte {
 			this.point_vie=0;
 	}
 	
+	
+	/**
+	 * Le serviteur gagne des points d'attaques (bonus par exemple)
+	 * @param a : nb de points d'attaques en plus
+	 */
 	public final void gagneAttaque(int a)
 	{
 		this.point_attaque+=a;
 	}
 	
+	
+	/**
+	 * Le serviteur gagne des points de vies (bonus)
+	 * @param nb : points de vies bonus
+	 */
 	public final void gagneVie( int nb)
 	{
 		this.point_vie = this.point_vie + nb ;
 	} 
 	
+	/**
+	 * Setter pour le nombre de tour a attendre avant de pouvoir attaquer
+	 * @param tour
+	 */
 	public final void setAttente(int tour)
 	{
 		this.attente=tour;
@@ -150,7 +189,8 @@ public final class Serviteur extends Carte {
 	 * Un serviteur peut avoir un effet au début de sa mise en jeu
 	 * Execute la capacite du serviteur et met l'attente à 1 
 	 * @param cible sur laquelle executer la capacite
-	 * @throws HearthstoneCapaciteException 
+	 * @throws HearthstoneCapaciteException :
+	 * 				- si la capacite a besoin d'une cible mais qu'elle est nulle 
 	 * @throws HearthstoneException 
 	 */
 	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneCapaciteException, HearthstoneException {

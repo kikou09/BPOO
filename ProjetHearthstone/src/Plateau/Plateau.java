@@ -6,14 +6,26 @@ import application.HearthstoneException;
 import joueur.IJoueur;
 import carte.ICarte;
 
+/**
+ * Champs :
+ * 			plateau : un seul et unique plateau donc c'est un singleton
+ *			joueurCourant : Joueur qui a le tour actuellement 
+ *			demarree : booleen qui renvoie vrai si la partie a demarree
+ *			joueurPresents : ArrayList avec tous les joueurs dans la partie ( ici 2 maximum)
+ *
+ *@author Jorane SCHUSTER , Claire MICHALON
+ */
 public final class Plateau implements IPlateau {
 	
 	private static Plateau plateau=null;
 	private IJoueur joueurCourant;
 	private boolean demarree;
-	private ArrayList<IJoueur> joueurPresents;   //JoueursPresents dans le jeu 
+	private ArrayList<IJoueur> joueurPresents;
 	
-	
+	/**
+	 * 
+	 * @return le plateau si il existe et le créer sinon 
+	 */
 	public static Plateau instancePlateau() {
 		if(plateau==null)
 			plateau=new Plateau();
@@ -62,6 +74,11 @@ public final class Plateau implements IPlateau {
 		
 	}
 	
+	/**
+	 * "Dessine" les cartes posées du joueur en paramètre 
+	 * @param joueur
+	 * @return  une chaine de caractères avec les cartes posées
+	 */
 	private String dessinerCartesPoses(IJoueur joueur) {
 		
 		String chaine ="\n\n\t\t Cartes posées sur le plateau : \n\n";
@@ -77,6 +94,11 @@ public final class Plateau implements IPlateau {
 		return chaine;
 	}
 	
+	
+	/**
+	 * "Dessine la main du joueur courant
+	 * @return une chaine de caractères contenant sa main
+	 */
 	private String dessinerMain() {
 		
 		
@@ -166,6 +188,9 @@ public final class Plateau implements IPlateau {
 	
 	
 	public final void gagnePartie (IJoueur joueur) throws HearthstoneException {
+		
+		if(!this.demarree)
+			throw new HearthstoneException("La partie n'a pas encore commence");
 		this.demarree=false;
 		String msg=Plateau.instancePlateau().getAdversaire(joueur).getPseudo() + "Pour arrêter de perdre il faut arrêter de jouer ! ";
 		msg+="**** "+ joueur.getPseudo() + " a gagne ! ****";

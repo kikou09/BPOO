@@ -7,6 +7,7 @@ import capacite.ICapacite;
 
 /**
  * Un sort est une Carte qui qui disparait dès la mise en jeu
+ * @author Jorane SCHUSTER , Claire MICHALON
  */
 public final class Sort extends Carte {
 	
