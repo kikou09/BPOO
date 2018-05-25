@@ -5,6 +5,9 @@ import application.HearthstoneException;
 import carte.ICarte;
 import carte.Serviteur;
 
+/**
+ * Interface pour executer l'action d'un serviteur (attaque)
+*/
 public class InterfaceExecuterAction extends Interface {
 
 	public InterfaceExecuterAction(Interface suivant) {

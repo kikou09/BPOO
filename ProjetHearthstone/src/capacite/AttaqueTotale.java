@@ -13,7 +13,6 @@ import carte.Serviteur;
 
 /**
  * Capacite qui attaque simultanément tous les serviteurs adverses 
- *
  */
 public class AttaqueTotale extends Capacite {
 	

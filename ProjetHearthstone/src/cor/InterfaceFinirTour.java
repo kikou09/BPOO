@@ -3,6 +3,9 @@ package cor;
 import Plateau.Plateau;
 import application.HearthstoneException;
 
+/**
+ * Interface pour finir le tour du joueur courant
+*/
 public class InterfaceFinirTour extends Interface {
 
 	public InterfaceFinirTour(Interface suivant) {

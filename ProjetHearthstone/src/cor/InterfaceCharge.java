@@ -7,6 +7,9 @@ import capacite.Charge;
 import carte.ICarte;
 import carte.Sort;
 
+/**
+ * Interface pour executer le sort Charge ( nécessite de designer un serviteur de son jeu )
+ */
 public class InterfaceCharge extends Interface {
 
 	public InterfaceCharge(Interface suivant) {

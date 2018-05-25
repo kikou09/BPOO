@@ -4,6 +4,10 @@ import Plateau.Plateau;
 import application.Hearthstone;
 import application.HearthstoneException;
 
+
+/**
+ * Interface pour jouer une carte deja en jeu
+*/
 public class InterfaceJouerCarteJeu extends Interface {
 
 	public InterfaceJouerCarteJeu(Interface suivant) {

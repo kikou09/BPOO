@@ -5,6 +5,9 @@ import application.HearthstoneException;
 import carte.ICarte;
 import joueur.IJoueur;
 
+/**
+ * Interface pour utiliser le pouvoir du héros
+*/
 public class InterfaceUtiliserPouvoir extends Interface {
 
 	public InterfaceUtiliserPouvoir(Interface suivant) {

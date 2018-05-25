@@ -5,6 +5,10 @@ import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 
+
+/**
+ * Interface pour jouer une carte en main
+*/
 public class InterfaceJouerCarteMain extends Interface {
 
 	public InterfaceJouerCarteMain(Interface suivant) {
@@ -31,31 +35,31 @@ public class InterfaceJouerCarteMain extends Interface {
 			throw new HearthstoneException("Cette carte n'est pas dans ta main");
 			
 			//Essaie sans cible
-			try{
+		try{
 				
 				Plateau.instancePlateau().getJoueurCourant().jouerCarte(carte);
-			}
+		}
 			
-			catch(HearthstoneException e1) {
-				
-		
-				es.println(e1.getMessage());
+		//Capacite qui necessite une cible		
+		catch(HearthstoneCapaciteException e1) {
+			
+			es.println(e1.getMessage());
+			
+			try {
+				application.Hearthstone.ihm.interagir(carte, carte);
 			}
+			catch(Exception e2) {
+				
+				es.println(e2.getMessage());
+			}
+		}
 		
-			//Capacite qui necessite une cible		
-			catch(HearthstoneCapaciteException e1) {
+		catch(HearthstoneException e1) {
 				
 				es.println(e1.getMessage());
-				
-				
-				try {
-					application.Hearthstone.ihm.interagir(carte, carte);
-				}
-				catch(Exception e2) {
-					
-					es.println(e2.getMessage());
-				}
-			}
+		}
+		
+		
 	}
 
 	@Override

@@ -16,7 +16,9 @@ import carte.Sort;
 import cor.Console;
 import cor.Interface;
 import cor.InterfaceCharge;
+import cor.InterfaceChargeServiteur;
 import cor.InterfaceChasseur;
+import cor.InterfaceExecuterAction;
 import cor.InterfaceFinirTour;
 import cor.InterfaceTest;
 import cor.InterfaceJouerCarteJeu;
@@ -38,16 +40,23 @@ import capacite.Invocation;
 import capacite.LachezChiens;
 import capacite.Pioche;
 import capacite.Provocation;
+
 /**
- * @param j = joueur qui possede les cartes.
- * @return ArrayList de toutes les cartes 
- * @see ICarte
+ * Classe principale du jeu 
+ * @author Jorane SCHUSTER , Claire MICHALON
+ *
  */
 public class Hearthstone {
 	
 	public static	Interface ihm=null;
 	public final static Console es=new Console();
 		
+	/**
+	 * Creer toutes les cartes de Jaina
+	 * @param j = joueur qui possede les cartes
+	 * @return ArrayList de toutes les cartes 
+	 * @see ICarte
+	 */
 	public static ArrayList<ICarte> CreerCartesJaina(IJoueur j)
 	{
 		ArrayList<ICarte> cartesJaina = new ArrayList<ICarte> ();
@@ -66,6 +75,13 @@ public class Hearthstone {
 		
 	}
 	
+	
+	/**
+	 * Creer toutes les cartes de Rexxar
+	 * @param j = joueur qui possede les cartes.
+	 * @return ArrayList de toutes les cartes 
+	 * @see ICarte
+	 */
 	public static ArrayList<ICarte> CreerCartesRexxar(IJoueur j)
 	{
 		ArrayList<ICarte> cartesRexxar = new ArrayList<ICarte> ();
@@ -84,6 +100,13 @@ public class Hearthstone {
 		
 	}
 	
+	
+	/**
+	 * Creer toutes les cartes neutres
+	 * @param j = joueur qui possede les cartes.
+	 * @return ArrayList de toutes les cartes 
+	 * @see ICarte
+	 */
 	public static ArrayList<ICarte> CreerCartesNeutres(IJoueur proprietaire)
 	{
 		ArrayList<ICarte> cartesNeutres = new ArrayList<ICarte> ();
@@ -205,7 +228,11 @@ public class Hearthstone {
 		}
 	}
 
-public static String menu(){
+	/**
+	 * Menu pour l'interaction avec le joueur
+	 * @return chaine de caractères contenant le choix du joueur
+	 */
+	public static String menu(){
 		
 		ArrayList<String> menu=new ArrayList<String>();
 		Interface i=ihm;
@@ -234,12 +261,18 @@ public static String menu(){
 		
 	}
 	
+	/**
+	 * Creer l'interface de la chaine de responsabilitées
+	 * @return Interface ihm
+	 */
 	public static Interface initialiserInterface() {
 		
 		Interface monInterface=null;
 		monInterface=new InterfaceCharge(monInterface);
 		monInterface=new InterfaceJouerSort(monInterface);
 		monInterface= new InterfaceChasseur(monInterface);
+		monInterface=new InterfaceExecuterAction(monInterface);
+		monInterface=new InterfaceChargeServiteur(monInterface);
 		monInterface=new InterfaceQuitter(monInterface);
 		monInterface=new InterfaceFinirTour(monInterface);
 		monInterface=new InterfaceJouerCarteMain(monInterface);

@@ -7,6 +7,9 @@ import capacite.Chasseur;
 import carte.ICarte;
 import carte.Sort;
 
+/**
+ * Interface pour executer le sort marque du chasseur
+ */
 public class InterfaceChasseur extends Interface {
 
 	public InterfaceChasseur(Interface suivant) {

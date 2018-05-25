@@ -133,7 +133,7 @@ public abstract interface IJoueur{
 	 * et est placée dans la main du joueur.
 	 * @throws HearthstoneException si la pioche est vide
 	 */
-	public abstract void piocher() throws HearthstoneException ;
+	public abstract void piocher() ;
 	
 	/**
 	 * Il se passe beaucoup de choses au moment où le joueur prend le tour.

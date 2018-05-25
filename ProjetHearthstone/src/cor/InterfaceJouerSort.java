@@ -7,6 +7,10 @@ import carte.ICarte;
 import carte.Serviteur;
 import carte.Sort;
 
+
+/**
+ * Interface pour jouer un sort
+*/
 public class InterfaceJouerSort extends Interface {
 
 	public InterfaceJouerSort(Interface suivant) {

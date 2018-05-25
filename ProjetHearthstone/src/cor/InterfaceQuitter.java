@@ -1,6 +1,9 @@
 package cor;
 
 
+/**
+ * Interface pour quitter le jeu en cours de partie
+*/
 public class InterfaceQuitter extends Interface {
 
 	public InterfaceQuitter(Interface suivant) {

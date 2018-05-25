@@ -3,6 +3,9 @@ package cor;
 import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 
+/**
+ * Classe Interface pour la chaine de responsablitees
+ */
 public abstract class Interface {
 	
 	private Interface suivant=null;
@@ -29,7 +32,5 @@ public abstract class Interface {
 		else 
 			throw new Exception("pas d'intercation pour"+choix);
 	}
-
-	//public void executerInteraction(Dessin d) {}
 
 }

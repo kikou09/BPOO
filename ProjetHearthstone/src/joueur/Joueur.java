@@ -138,7 +138,7 @@ public final class Joueur implements IJoueur {
 	}
 	
 	
-	public final void piocher()  throws HearthstoneException {
+	public final void piocher() {
 		if(this.deck.size()!=0 )
 		{
 			int i = (int)(Math.random() * this.deck.size());
@@ -146,8 +146,6 @@ public final class Joueur implements IJoueur {
 			this.main.add(carte_p);
 			this.deck.remove(i);
 		}
-		else
-			throw new HearthstoneException("Le deck est vide");
 	}
 	
 

@@ -201,7 +201,7 @@ public final class Serviteur extends Carte {
 				this.capacite.executerEffetMiseEnJeu(cible);
 			}
 			catch(HearthstoneCapaciteException e) {
-				e.printStackTrace();
+				throw new HearthstoneCapaciteException(e.getMessage());
 			}
 		
 	}

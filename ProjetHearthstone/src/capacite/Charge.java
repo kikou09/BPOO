@@ -13,18 +13,6 @@ public final class Charge extends ACapacite{
 		
 		super("Charge", " Permet à un serviteur de ne pas attendre avant d'attaquer");
 	}
-
-/*	public void executerAction(Object cible) throws HearthstoneException  {
-		
-		if(cible==null)
-			throw new HearthstoneException("Charge necessite une cible");
-			
-		if(!(cible instanceof Serviteur))
-			throw new HearthstoneException("La cible doit être un serviteur");
-			
-		((Serviteur)cible).setAttente(0);		
-	}
-*/
 	
 	public void executerEffetDebutTour() {}
 
@@ -42,9 +30,9 @@ public final class Charge extends ACapacite{
 	 */
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException , HearthstoneCapaciteException {
 		
-		if(cible==null)
+		if(cible==null) {
 			throw new HearthstoneCapaciteException("Charge necessite une cible");
-			
+		}	
 		if(!(cible instanceof Serviteur))
 			throw new HearthstoneException("La cible doit être un serviteur");
 			
