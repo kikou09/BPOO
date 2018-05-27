@@ -180,9 +180,17 @@ public final class Joueur implements IJoueur {
 		this.mana=this.mana - carte.getCout();
 		this.main.remove(carte);
 		this.cartes_poses.add(carte);
-		
-		carte.executerEffetDebutMiseEnJeu(cible);
-
+		try {
+			
+			carte.executerEffetDebutMiseEnJeu(cible);
+		}
+		catch(HearthstoneException e) {
+			
+			this.mana=this.mana + carte.getCout();
+			this.main.add(carte);
+			this.cartes_poses.remove(carte);
+			throw new HearthstoneException (e.getMessage());
+		}
 		
 	}
 

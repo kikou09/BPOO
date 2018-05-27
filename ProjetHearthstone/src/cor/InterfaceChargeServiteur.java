@@ -20,9 +20,11 @@ public class InterfaceChargeServiteur extends Interface {
 	public boolean saitInteragir(Object choix) {
 		if(!(choix instanceof Serviteur))
 			return false;
-		if(!(((Serviteur)choix).getCapacite() instanceof Charge))
-			return false;
-		return true;
+		if((((Serviteur)choix).getCapacite() instanceof Charge)) {
+				if(!(((Serviteur)choix).getCapacite().getUtilise()))
+			return true;
+		}
+		return false;
 
 	}
 

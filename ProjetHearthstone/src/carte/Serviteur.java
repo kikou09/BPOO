@@ -236,7 +236,6 @@ public final class Serviteur extends Carte {
 			this.capacite.executerEffetDebutTour();
 		
 	}
-
 	
 	/**
 	 * Verifie si un serviteur adverse en jeu possède la capacite provocation 
@@ -260,5 +259,6 @@ public final class Serviteur extends Carte {
 		
 		return true;
 	}
+
 		
 }

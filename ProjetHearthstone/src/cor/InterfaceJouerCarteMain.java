@@ -40,6 +40,10 @@ public class InterfaceJouerCarteMain extends Interface {
 				Plateau.instancePlateau().getJoueurCourant().jouerCarte(carte);
 		}
 			
+		catch(HearthstoneException e1) {
+			
+			es.println(e1.getMessage());
+		}
 		//Capacite qui necessite une cible		
 		catch(HearthstoneCapaciteException e1) {
 			
@@ -53,12 +57,7 @@ public class InterfaceJouerCarteMain extends Interface {
 				es.println(e2.getMessage());
 			}
 		}
-		
-		catch(HearthstoneException e1) {
-				
-				es.println(e1.getMessage());
-		}
-		
+			
 		
 	}
 

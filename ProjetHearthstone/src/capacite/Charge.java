@@ -38,6 +38,7 @@ public final class Charge extends ACapacite{
 			
 		cible=((Serviteur)cible);
 		((Serviteur)cible).setAttente(0);
+		this.utilise=true;
 		
 	}
 

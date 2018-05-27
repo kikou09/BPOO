@@ -46,9 +46,10 @@ public class AttaqueCiblee extends Capacite {
 			throw new HearthstoneException(" Vous devez attaquer le joueur ou un serviteur ");
 		}
 		
-		if(getServiteurProvocation(cible))
-			throw new HearthstoneException("Un serviteur possede Provocation");
+		if(getServiteurProvocation(cible)) {
 		
+			throw new HearthstoneException("Un serviteur possede Provocation");
+		}
 		if(cible instanceof IJoueur) {
 		
 			cible=((IJoueur)cible);

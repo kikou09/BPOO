@@ -81,4 +81,5 @@ public abstract interface ICarte extends Cloneable{
 	 * @return capacite
 	 */
 	public abstract ICapacite getCapacite();
+	
 }

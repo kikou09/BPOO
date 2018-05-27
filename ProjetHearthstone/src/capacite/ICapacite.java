@@ -72,4 +72,8 @@ public abstract interface ICapacite{
 	 */
 	public abstract String getNom();
 
+
+
+	public abstract boolean getUtilise();
+
 }

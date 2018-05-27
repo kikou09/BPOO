@@ -71,7 +71,8 @@ public abstract class Carte implements ICarte{
 		} else if (!nom.equals(other.nom))
 			return false;
 		return true;
-	}		
+	}
+	
 			
 }		
 

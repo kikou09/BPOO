@@ -4,7 +4,6 @@ import Plateau.Plateau;
 import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
-import carte.Serviteur;
 import carte.Sort;
 
 
@@ -19,7 +18,7 @@ public class InterfaceJouerSort extends Interface {
 
 	@Override
 	public boolean saitInteragir(Object choix) {
-		if(!(choix instanceof Sort) && !(choix instanceof Serviteur))
+		if(!(choix instanceof Sort))
 			return false;
 		return true;
 	}

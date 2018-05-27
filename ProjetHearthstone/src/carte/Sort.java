@@ -30,7 +30,6 @@ public final class Sort extends Carte {
 	
 	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException, HearthstoneCapaciteException {
 		
-		
 			this.capacite.executerEffetMiseEnJeu(cible);
 			super.getProprietaire().perdreCarte(this);	
 	}
