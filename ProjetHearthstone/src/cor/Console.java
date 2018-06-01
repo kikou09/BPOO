@@ -258,7 +258,7 @@ public class Console {
 	}
 
 	/**
-	 * Affiche un boolean sans passage a la ligne.
+	 * Affiche un boolean sans passage a la ligne
 	 */
 	public void print(boolean s){
 		System.out.print(String.valueOf(s));

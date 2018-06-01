@@ -144,24 +144,50 @@ public class Hearthstone {
 		
 		
 	}
+	
+	/**
+	 * Choix du pseudo pour chaque joueur
+	 * @param numeroJoueur numero du joueur qui doit choisir son pseudo
+	 * @return chaine de caractères contenant le pseudo du joueur
+	 */
+	public static String choisirPseudo(int numeroJoueur) {
+		
+		String pseudo;
+		Console es=application.Hearthstone.es;
+		
+		es.println("Joueur numero " + numeroJoueur + "\nquel pseudo avez vous choisit ?" );
+		pseudo=es.readLine();
+		
+		return pseudo;
+	}
 
 	public static void main(String[] args) {
 		
 		ihm=initialiserInterface();
+		
+		int numeroJoueur=1;
+		
+		String pseudoJoueur1 , pseudoJoueur2;
 		
 		if(ihm==null){
 			es.println("L'application ne fait rien ");
 			System.exit(0);
 		}	
 		
+		/*Choix des pseudos des deux joueurs*/
+		pseudoJoueur1=choisirPseudo(numeroJoueur);
+		numeroJoueur++;
+		pseudoJoueur2=choisirPseudo(numeroJoueur);
+		
+		
 		/*Premier joueur avec le heros Rexxar*/
 		Heros Rexxar=new Heros("Rexxar" , new AttaqueCiblee ("Tir assuré ",
 				"Inflige 2 points de degats à la cible", 2));
-		IJoueur joueur1=new Joueur("Joueur 1 " , Rexxar);
+		IJoueur joueur1=new Joueur(pseudoJoueur1 , Rexxar);
 		joueur1.getHeros().setCartes(CreerCartesRexxar(joueur1));
 		
 		/*Deuxieme joueur avec le heros Jaina*/
-		IJoueur joueur2=new Joueur ( "Joueur 2" , new Heros("Jaina",new AttaqueCiblee("Boule de feu",
+		IJoueur joueur2=new Joueur ( pseudoJoueur2 , new Heros("Jaina",new AttaqueCiblee("Boule de feu",
 				"Inflige 1 point de degat à la cible", 1)));
 		joueur2.getHeros().setCartes(CreerCartesJaina(joueur2));
 		
@@ -228,6 +254,7 @@ public class Hearthstone {
 		}
 	}
 
+	
 	/**
 	 * Menu pour l'interaction avec le joueur
 	 * @return chaine de caractères contenant le choix du joueur
@@ -260,6 +287,7 @@ public class Hearthstone {
 		return menu.get(choix-1);
 		
 	}
+	
 	
 	/**
 	 * Creer l'interface de la chaine de responsabilitées

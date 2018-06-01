@@ -38,7 +38,7 @@ public final class Joueur implements IJoueur {
 		this.deck=new ArrayList<ICarte>();
 		
 	}
-	
+		
 	public final String getPseudo() {
 		return this.pseudo;
 	}
@@ -118,7 +118,6 @@ public final class Joueur implements IJoueur {
 	}
 
 
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

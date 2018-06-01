@@ -32,7 +32,7 @@ public abstract interface IPlateau {
 	
 	/**
 	 * Retourne vrai si la partie est demarree
-	 * @return
+	 * @return booleen 
 	 */
 	public abstract boolean	estDemarree();
 	
@@ -78,7 +78,7 @@ public abstract interface IPlateau {
 	
 	/**
 	 * Setter qui va ave le getter 
-	 * @param joueur 
+	 * @param joueur  joueur qui devient le joueur courant
 	 * @throws HearthstoneException : 
 	 * 			- si joueur est null
 	 * 			- si joueur n'est pas dans la partie 

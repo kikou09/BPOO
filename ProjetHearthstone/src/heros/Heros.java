@@ -121,7 +121,7 @@ public final class Heros implements Cloneable{
 
 	/**
 	 * Setter pour les cartes du heros
-	 * @param cartes
+	 * @param cartes ArrayList contenat les cartes du hero
 	 */
 	public void setCartes(ArrayList<ICarte> cartes) {
 		if(cartes==null)

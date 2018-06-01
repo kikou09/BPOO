@@ -99,10 +99,10 @@ public abstract interface IJoueur{
 	/**
 	 * Pendant le tour, un joueur peut tenter de prendre une carte de sa main
 	 *  et de la placer sur le board.
-	 * @param carte
-	 * @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
+	 * @param carte carte a jouer 
+	 * @throws HearthstoneException si cette carte n'est pas dans la main du joueur
 	 * 								si il n'y a pas assez de mana pour invouer cette carte
-	 * @throws HearthstoneCapaciteException: si capacite.executerEffeMiseEnJeu a
+	 * @throws HearthstoneCapaciteException si capacite.executerEffeMiseEnJeu a
 	 *  besoin d'une cible
 	 */
 	public abstract void jouerCarte(ICarte carte) throws HearthstoneException , HearthstoneCapaciteException ;
@@ -110,12 +110,12 @@ public abstract interface IJoueur{
 	/**
 	 * Pendant le tour, un joueur peut tenter de prendre une carte de sa main
 	 *  et de la placer sur le board. 
-	 * @param carte
-	 * @param cible
-	* @throws HearthstoneException: si cette carte n'est pas dans la main du joueur
+	 * @param carte carte a jouer
+	 * @param cible cible de la carte
+	 * @throws HearthstoneException  si cette carte n'est pas dans la main du joueur
 	 * 								si il n'y a pas assez de mana pour invouer cette carte
-	 * @throws HearthstoneCapaciteException: si capacite.executerEffeMiseEnJeu a
-	 *  besoin d'une cible
+	 * @throws HearthstoneCapaciteException si capacite.executerEffeMiseEnJeu a besoin d'une cible
+	 *  
 	 */
 	public abstract void jouerCarte(ICarte carte, Object cible) throws HearthstoneException, HearthstoneCapaciteException;
 	
@@ -123,8 +123,8 @@ public abstract interface IJoueur{
 	 * Lorsqu'une carte a fini sa vie (un serviteur qui meut, un sort qui vient d'être utilisé,
 	 *  ...), il faut gérer le jeu (une carte en moins...), 
 	 *  ainsi que les effets liés à la disparition de la carte (Rale d'agonie par exemple).
-	 * @param carte
-	 * @throws HearthstoneException; si la carte n'a pas ete posee sur le plateau
+	 * @param carte carte qui est perdue
+	 * @throws HearthstoneException si la carte n'a pas ete posee sur le plateau
 	 */
 	public abstract void perdreCarte(ICarte carte) throws HearthstoneException ;
 	
@@ -143,8 +143,8 @@ public abstract interface IJoueur{
 	
 	/**
 	 * Lorsque qu'une carte est en jeu, le joueur peut utiliser cette carte.
-	 * @param carte
-	 * @param cible
+	 * @param carte carte a utiliser
+	 * @param cible cible de la carte utilisée
 	 * @throws HearthstoneException  si cette carte n'est pas sur le plateau
 	 */
 	public abstract void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException;
@@ -152,7 +152,7 @@ public abstract interface IJoueur{
 	/**
 	 * Cette fonction utilise le pouvoir du héros du joueur
 	 *  pour faire quelque chose sur la cible.
-	 * @param cible
+	 * @param cible cible du pouvoir du hero
 	 * @throws HearthstoneException si le heros ne possede pas de pouvoir
 	 */
 	public abstract void utiliserPouvoir(Object cible) throws HearthstoneException ;

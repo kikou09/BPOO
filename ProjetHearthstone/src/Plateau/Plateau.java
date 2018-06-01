@@ -23,7 +23,6 @@ public final class Plateau implements IPlateau {
 	private ArrayList<IJoueur> joueurPresents;
 	
 	/**
-	 * 
 	 * @return le plateau si il existe et le créer sinon 
 	 */
 	public static Plateau instancePlateau() {
@@ -124,7 +123,7 @@ public final class Plateau implements IPlateau {
 		
 		String ch="";
 		
-		ch+="\t\t\t\t\t AU TOUR DE " + this.joueurCourant.getPseudo() +"\n\n\n" ;
+		ch+="\t\t\t\t\t AU TOUR DE : " + this.joueurCourant.getPseudo() +"\n\n\n" ;
 		ch+=this.joueurPresents.get(0);
 		
 		if(this.joueurCourant.equals(this.joueurPresents.get(0)))
