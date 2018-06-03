@@ -30,7 +30,7 @@ public class InterfaceTest extends Interface {
 
 	@Override
 	public String getDescription() {
-		return "Crash Test";
+		return "Crash Test (Pioche toutes les cartes et met 20 point de mana)";
 	}
 
 }

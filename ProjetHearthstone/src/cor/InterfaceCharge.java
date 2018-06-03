@@ -43,7 +43,9 @@ public class InterfaceCharge extends Interface {
 	
 		}
 		catch(HearthstoneException e) {
-			es.println(e.getMessage());
+			
+			es.println("\n");
+			System.err.println(e.getMessage());
 		}
 		
 		Plateau.instancePlateau().getJoueurCourant().jouerCarte(((ICarte)o), carte);

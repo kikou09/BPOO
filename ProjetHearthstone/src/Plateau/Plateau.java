@@ -188,12 +188,12 @@ public final class Plateau implements IPlateau {
 	
 	public final void gagnePartie (IJoueur joueur) throws HearthstoneException {
 		
-		if(!this.demarree)
+		if(!this.demarree) {
 			throw new HearthstoneException("La partie n'a pas encore commence");
+		}
+		String msg=Plateau.instancePlateau().getAdversaire(joueur).getPseudo() + " pour arrêter de perdre il faut arrêter de jouer ! ";
+		msg+="\n**** "+ joueur.getPseudo() + " a gagne ! ****";
 		this.demarree=false;
-		String msg=Plateau.instancePlateau().getAdversaire(joueur).getPseudo() + "Pour arrêter de perdre il faut arrêter de jouer ! ";
-		msg+="**** "+ joueur.getPseudo() + " a gagne ! ****";
-		
 		
 		System.out.println(msg);
 	

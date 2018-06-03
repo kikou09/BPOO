@@ -154,8 +154,9 @@ public abstract interface IJoueur{
 	 *  pour faire quelque chose sur la cible.
 	 * @param cible cible du pouvoir du hero
 	 * @throws HearthstoneException si le heros ne possede pas de pouvoir
+	 * @throws HearthstoneCapaciteException si la cible est null
 	 */
-	public abstract void utiliserPouvoir(Object cible) throws HearthstoneException ;
+	public abstract void utiliserPouvoir(Object cible) throws HearthstoneException, HearthstoneCapaciteException ;
 	
 	/**
 	 * Surprise! c'est un setteur

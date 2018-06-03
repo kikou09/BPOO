@@ -24,13 +24,17 @@ public abstract class Capacite extends ACapacite{
 	
 	/**
 	 * Certaines capacité agissent quand on le demande, et éventuellement sur une cible...
+	 * @throws HearthstoneCapaciteException 
 	 */
-	public void executerAction(Object cible) throws HearthstoneException {}
+	public void executerAction(Object cible) throws HearthstoneException, HearthstoneCapaciteException {}
 
 	/**
 	 * Certaines capacité agissent en début de tour 
 	 */
-	public void executerEffetDebutTour() throws HearthstoneException {}
+	public void executerEffetDebutTour() throws HearthstoneException {
+		
+		this.utilise=false;
+	}
 
 	/**
 	 * Certaines capacité agissent lorsque la carte disparaît du jeu

@@ -29,7 +29,8 @@ public class InterfaceFinirTour extends Interface {
 		}
 		catch(HearthstoneException e){
 			
-			es.println(e.getMessage());
+			es.println("\n");
+			System.err.println(e.getMessage());
 		}
 	}
 

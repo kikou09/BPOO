@@ -201,7 +201,7 @@ public final class Joueur implements IJoueur {
 		
 	}
 
-	public final void utiliserPouvoir(Object cible) throws HearthstoneException{
+	public final void utiliserPouvoir(Object cible) throws HearthstoneException, HearthstoneCapaciteException{
 		if(this.heros.getPouvoir()==null)
 			throw new HearthstoneException("Ton heros ne possede pas de pouvoir ");
 		this.heros.getPouvoir().executerAction(cible);

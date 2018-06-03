@@ -1,6 +1,7 @@
 package cor;
 
 import Plateau.Plateau;
+import application.HearthstoneCapaciteException;
 import application.HearthstoneException;
 import carte.ICarte;
 import joueur.IJoueur;
@@ -23,7 +24,7 @@ public class InterfaceUtiliserPouvoir extends Interface {
 
 	//Retourne la cible 
 	@Override
-	public void executerInteraction(Object o) throws HearthstoneException {
+	public void executerInteraction(Object o) throws HearthstoneException, HearthstoneCapaciteException {
 		
 		Console es=application.Hearthstone.es;
 		
@@ -55,7 +56,8 @@ public class InterfaceUtiliserPouvoir extends Interface {
 		}
 		catch(HearthstoneException e) {
 			
-			es.println(e.getMessage());
+			es.println("\n");
+			System.err.println(e.getMessage());
 		}
 		
 	}

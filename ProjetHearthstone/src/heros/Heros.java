@@ -79,7 +79,7 @@ public final class Heros implements Cloneable{
 	public int getPointsDeVie () {
 		return this.pt_vie;
 	}
-	
+
 	
 	/**
 	 * Le héros perd des points de vies 

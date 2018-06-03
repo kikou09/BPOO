@@ -17,9 +17,11 @@ public abstract interface ICapacite{
 	 * @throws HearthstoneException:
 	 * 					- selon les cas :
 	 * 							-si la capacite est nulle
-	 * 							-si la cible est nulle
+	 * 							-si la capacite a deja ete utilise
+	 * 							-si la cible n'est pas de la bonne classe
+	 * @throws HearthstoneCapaciteException si la cible est nulle
 	 */
-	public abstract void executerAction(Object cible)  throws HearthstoneException ; 
+	public abstract void executerAction(Object cible)  throws HearthstoneException, HearthstoneCapaciteException ; 
 	
 	
 	

@@ -46,7 +46,8 @@ public class InterfaceJouerCarteJeu extends Interface {
 		}
 		catch(HearthstoneException e1) {
 			
-			es.println(e1.getMessage());
+			es.println("\n");
+			System.err.println(e1.getMessage());
 		}
 	}
 

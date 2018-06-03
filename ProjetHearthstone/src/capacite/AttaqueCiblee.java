@@ -22,6 +22,13 @@ public class AttaqueCiblee extends Capacite {
 		super(n,des,d);
 	}
 	
+	
+	public void executerAction(Object cible) throws HearthstoneException, HearthstoneCapaciteException {
+		
+		this.executerEffetMiseEnJeu(cible);
+
+	}
+
 	/**
 	 * Execute l'Effet de Mise En Jeu
 	 * @param cible

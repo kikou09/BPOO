@@ -87,7 +87,7 @@ public final class Serviteur extends Carte {
 		if (this.attente !=0)
 			throw new HearthstoneException ("Impossible de la jouer a  ce tour ci");
 		if(this.deja_attaque==true)
-			throw new HearthstoneException(" Deja joué ");
+			throw new HearthstoneException("Deja joué ce tour ci ");
 			
 		if(!(this.peutAttaquer(o)))
 			throw new HearthstoneException("Peut pas attaquer car un serviteur du plateau a provocation");

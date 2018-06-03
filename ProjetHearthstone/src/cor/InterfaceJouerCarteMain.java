@@ -54,7 +54,8 @@ public class InterfaceJouerCarteMain extends Interface {
 			}
 			catch(Exception e2) {
 				
-				es.println(e2.getMessage());
+				es.println("\n");
+				System.err.println(e2.getMessage());
 			}
 		}
 			

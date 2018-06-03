@@ -249,6 +249,7 @@ public class Hearthstone {
 			}
 			catch(Exception e) {
 				
+				es.println("\n");
 				System.err.println(e.getMessage());
 			}
 		}
