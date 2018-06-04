@@ -42,7 +42,8 @@ public class InterfaceJouerCarteMain extends Interface {
 			
 		catch(HearthstoneException e1) {
 			
-			es.println(e1.getMessage());
+			es.println("\n");
+			System.err.println(e1.getMessage());
 		}
 		//Capacite qui necessite une cible		
 		catch(HearthstoneCapaciteException e1) {

@@ -58,6 +58,8 @@ public class AttaqueCiblee extends Capacite {
 			throw new HearthstoneException("Un serviteur possede Provocation");
 		}
 		if(cible instanceof IJoueur) {
+			
+			System.out.println("ok");
 		
 			cible=((IJoueur)cible);
 			((IJoueur)cible).getHeros().perteVie(this.degats);
@@ -93,14 +95,15 @@ public class AttaqueCiblee extends Capacite {
 		IJoueur adversaire=Plateau.instancePlateau().getAdversaire(Plateau.instancePlateau().getJoueurCourant());
 
 		for(ICarte c : adversaire.getCartes_Poses()) {
-			
-			if(c instanceof Serviteur)
-				if(!(c.equals((Serviteur)cible)) && c.getCapacite() instanceof Provocation)
-						return true;
+
+			if(c instanceof Serviteur) {
+				if(!(c.equals(cible)) && c.getCapacite() instanceof Provocation)
+					return true;
+			}
 		}
-		
+
 		return false;
-		
+
 	}
 
 }

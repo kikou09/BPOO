@@ -40,7 +40,9 @@ public class InterfaceJouerCarteJeu extends Interface {
 				Hearthstone.ihm.interagir(carte, o);
 			}
 			catch(Exception e) {
-				es.println(e.getMessage());
+				
+				es.println("\n");
+				System.err.println(e.getMessage());
 			}
 
 		}
